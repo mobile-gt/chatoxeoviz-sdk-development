@@ -4,4 +4,4 @@ include ':chatosdk:chato-emoticon'
 include ':chatosdk'
 include ':chatosdk:chato-widget'
 include ':app'
-rootProject.name = "Chatoxpakaryo"
+rootProject.name = "Chatoxeoviz"
