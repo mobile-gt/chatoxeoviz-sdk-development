@@ -17,7 +17,7 @@ import com.gamatechno.chato.sdk.utils.ChatoUtils
 import com.gamatechno.ggfw.utils.GGFWUtil
 import com.google.gson.Gson
 
-public class ChatoBaseApplication : Application() {
+open class ChatoBaseApplication : Application() {
     private val TIMEOUT_MS = 60000 // 45second
 
     private var requestQueue: RequestQueue? = null
