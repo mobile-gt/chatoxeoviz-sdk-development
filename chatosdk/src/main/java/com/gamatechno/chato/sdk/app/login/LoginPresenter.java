@@ -125,7 +125,6 @@ public class LoginPresenter extends BasePresenter implements LoginView.Presenter
             @Override
             public Map<String, String> requestHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "Bearer " + ChatoUtils.getUserLogin(getContext()).getAccess_token());
                 if(customer!=null){
                     headers.put("customer_app_id", ""+customer.getCustomer_app_id());
                     headers.put("customer_secret", ""+customer.getCustomer_secret());
