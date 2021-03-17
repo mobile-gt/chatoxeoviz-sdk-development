@@ -32,6 +32,7 @@ open class ChatoBaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
     }
 
     fun getChatoPlaceholder(): Int {
