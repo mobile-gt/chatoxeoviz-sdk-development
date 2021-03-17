@@ -45,7 +45,7 @@ open class BaseRoomBroadcastActivity: ChatoPermissionActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         card_bar.setOnClickListener(View.OnClickListener {
             finish()
-            ChatoBaseApplication.getInstance().cancelPendingChatoRequest()
+            ChatoBaseApplication.instance.cancelPendingChatoRequest()
         })
         val imageLoader = PicassoLoader()
         val refreshableAvatarPlaceholder = AvatarPlaceholder("B")

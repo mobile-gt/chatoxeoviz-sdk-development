@@ -124,7 +124,7 @@ public class UserRoomDetailActivity extends ChatoCoreActivity implements UserRoo
         Picasso.get()
                 .load((chatRoomUiModel.getAvatar().equals("") ? "google.com": chatRoomUiModel.getAvatar()))
 //                .load(ChatoBaseApplication.getInstance().getChatoPlaceholder())
-                .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                .placeholder(ChatoBaseApplication.Companion.getInstance().getChatoPlaceholder())
                 .into(avatar_header);
         getSupportActionBar().setTitle(chatRoomUiModel.getTitle());
 

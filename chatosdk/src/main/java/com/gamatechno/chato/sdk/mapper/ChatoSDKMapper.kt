@@ -79,9 +79,5 @@ class ChatoSDKMapper {
             }
             ChatoUtils.setUserLogin(context, userModel)
         }
-        fun logout(context: Context){
-            GGFWUtil.setStringToSP(context, Preferences.CUSTOMER_INFO, "")
-            GGFWUtil.setStringToSP(context, Preferences.USER_LOGIN, "")
-        }
     }
 }

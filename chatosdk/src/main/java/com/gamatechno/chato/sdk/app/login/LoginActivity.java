@@ -1,7 +1,6 @@
 package com.gamatechno.chato.sdk.app.login;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.data.DAO.Customer.Customer;
 import com.gamatechno.chato.sdk.data.constant.Preferences;
-import com.gamatechno.chato.sdk.data.constant.StringConstant;
 import com.gamatechno.chato.sdk.module.activity.ChatoCoreActivity;
 import com.gamatechno.chato.sdk.utils.ChatoAlertDialog.ChatoAlertDialog;
 import com.gamatechno.ggfw.utils.GGFWUtil;

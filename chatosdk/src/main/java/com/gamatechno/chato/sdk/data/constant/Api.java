@@ -124,6 +124,10 @@ public class Api {
         return base_api + BuildConfig.stringUpdateDeviceToken;
     }
 
+    public static String customer_token() {
+        return base_api + BuildConfig.stringGetCustomerToken;
+    }
+
     public static String pin_chat_room() {
         return base_api + BuildConfig.stringPinnedChatRoom;
     }

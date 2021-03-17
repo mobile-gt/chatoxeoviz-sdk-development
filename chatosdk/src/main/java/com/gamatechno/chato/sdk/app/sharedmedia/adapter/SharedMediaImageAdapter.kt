@@ -8,20 +8,21 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import androidx.core.view.ViewCompat
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.gamatechno.chato.sdk.R
 import com.gamatechno.chato.sdk.app.photopreview.ImageViewActivity
 import com.gamatechno.chato.sdk.app.playvideo.PlayVideoActivity
 import com.gamatechno.chato.sdk.app.sharedmedia.SharedMediaActivity
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat
 import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication
+import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication.Companion.instance
 import com.gamatechno.chato.sdk.utils.BitmapTransform
-import com.gamatechno.chato.sdk.utils.FilePath.IOUtils
 import com.gamatechno.chato.sdk.utils.ChatoUtils
+import com.gamatechno.chato.sdk.utils.FilePath.IOUtils
 import com.gamatechno.chato.sdk.utils.downloader.GTDownloadCallback
 import com.gamatechno.chato.sdk.utils.downloader.GTDownloadManager
 import com.gamatechno.chato.sdk.utils.downloader.GTDownloadRequest
@@ -114,7 +115,7 @@ class SharedMediaImageAdapter(var context: Context) : RecyclerView.Adapter<Share
                     if (!IOUtils.isFileExist(fileUri.toString().replace("file:/", ""))) {
                         Picasso.get()
                                 .load(chat.message_attachment)
-                                .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                                .placeholder(instance.getChatoPlaceholder())
                                 .transform(BitmapTransform())
                                 .into(vh.view.image, object : Callback {
                                     override fun onSuccess() {
@@ -128,7 +129,7 @@ class SharedMediaImageAdapter(var context: Context) : RecyclerView.Adapter<Share
                     } else {
                         Picasso.get()
                                 .load(fileUri)
-                                .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                                .placeholder(instance.getChatoPlaceholder())
                                 .transform(BitmapTransform())
                                 .into(vh.view.image, object : Callback {
                                     override fun onSuccess() {
@@ -158,7 +159,7 @@ class SharedMediaImageAdapter(var context: Context) : RecyclerView.Adapter<Share
                     if (!IOUtils.isFileExist(fileUri.toString().replace("file:/", ""))) {
                         Picasso.get()
                                 .load(chat.message_attachment_thumbnail)
-                                .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                                .placeholder(ChatoBaseApplication.instance.getChatoPlaceholder())
                                 .transform(BitmapTransform())
                                 .into(vh.view.image, object : Callback {
                                     override fun onSuccess() {
@@ -172,7 +173,7 @@ class SharedMediaImageAdapter(var context: Context) : RecyclerView.Adapter<Share
                     } else {
                         Picasso.get()
                                 .load(fileUri)
-                                .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                                .placeholder(instance.getChatoPlaceholder())
                                 .transform(BitmapTransform())
                                 .into(vh.view.image, object : Callback {
                                     override fun onSuccess() {

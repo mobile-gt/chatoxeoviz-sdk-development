@@ -68,7 +68,7 @@ public class ChatoPermissionActivity extends ActivityPermission {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                ChatoBaseApplication.getInstance().cancelPendingChatoRequest();
+                ChatoBaseApplication.Companion.getInstance().cancelPendingChatoRequest();
                 super.onBackPressed();
 //                finish();
 //                this.onBackPressed();
@@ -81,7 +81,7 @@ public class ChatoPermissionActivity extends ActivityPermission {
 
     @Override
     public void onBackPressed() {
-        ChatoBaseApplication.getInstance().cancelPendingChatoRequest();
+        ChatoBaseApplication.Companion.getInstance().cancelPendingChatoRequest();
         super.onBackPressed();
     }
 

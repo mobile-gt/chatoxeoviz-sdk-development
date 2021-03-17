@@ -90,7 +90,7 @@ public class GGFWRest {
                 return "application/x-www-form-urlencoded";
             }
         };
-        ChatoBaseApplication.getInstance().addToChatoRequestQueue(request, DateInMilis()+URL);
+        ChatoBaseApplication.Companion.getInstance().addToChatoRequestQueue(request, DateInMilis()+URL);
         onPostRequest.onPreExecuted();
     }
 
@@ -168,7 +168,7 @@ public class GGFWRest {
             }
         };
         request.setShouldCache(false);
-        ChatoBaseApplication.getInstance().addToChatoRequestQueue(request, DateInMilis()+URL);
+        ChatoBaseApplication.Companion.getInstance().addToChatoRequestQueue(request, DateInMilis()+URL);
         onGetRequest.onPreExecuted();
     }
 
@@ -226,7 +226,7 @@ public class GGFWRest {
                 return "application/x-www-form-urlencoded";
             }
         };
-        ChatoBaseApplication.getInstance().addToChatoRequestQueue(request, DateInMilis()+URL);
+        ChatoBaseApplication.Companion.getInstance().addToChatoRequestQueue(request, DateInMilis()+URL);
         onPostRequest.onPreExecuted();
     }
 
@@ -309,7 +309,7 @@ public class GGFWRest {
             }
         };
         request.setShouldCache(false);
-        ChatoBaseApplication.getInstance().addToChatoRequestQueue(request, DateInMilis()+URL);
+        ChatoBaseApplication.Companion.getInstance().addToChatoRequestQueue(request, DateInMilis()+URL);
         onGetRequest.onPreExecuted();
     }
 
@@ -364,7 +364,7 @@ public class GGFWRest {
         };
 //        multipartRequest.setRetryPolicy(new DefaultRetryPolicy( 30000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         multipartRequest.setShouldCache(false);
-        ChatoBaseApplication.getInstance().addToChatoRequestQueue(multipartRequest, DateInMilis()+URL);
+        ChatoBaseApplication.Companion.getInstance().addToChatoRequestQueue(multipartRequest, DateInMilis()+URL);
         onPostRequest.onPreExecuted();
     }
 

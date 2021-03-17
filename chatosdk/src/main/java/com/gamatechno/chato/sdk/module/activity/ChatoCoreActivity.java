@@ -71,7 +71,7 @@ public class ChatoCoreActivity extends ActivityGeneral {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                ChatoBaseApplication.getInstance().cancelPendingChatoRequest();
+                ChatoBaseApplication.Companion.getInstance().cancelPendingChatoRequest();
                 this.onBackPressed();
                 return true;
             default:
@@ -82,7 +82,7 @@ public class ChatoCoreActivity extends ActivityGeneral {
 
     @Override
     public void onBackPressed() {
-        ChatoBaseApplication.getInstance().cancelPendingChatoRequest();
+        ChatoBaseApplication.Companion.getInstance().cancelPendingChatoRequest();
         super.onBackPressed();
     }
 

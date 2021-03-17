@@ -3,21 +3,19 @@ package com.gamatechno.chato.sdk.module.core;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.multidex.MultiDexApplication;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.gamatechno.chato.sdk.R;
 
-public class ChatoBaseApplication extends Application {
+public class ChatoBaseApplicationOld extends Application {
     private static final int TIMEOUT_MS = 60000; // 45second
 
     private RequestQueue requestQueue;
-    private static ChatoBaseApplication instance;
+    private static ChatoBaseApplicationOld instance;
 
-    public ChatoBaseApplication() {
+    public ChatoBaseApplicationOld() {
         super();
     }
     private int chato_placeholder = R.drawable.ic_placeholder;
@@ -36,7 +34,11 @@ public class ChatoBaseApplication extends Application {
         this.chato_placeholder = drawable;
     }
 
-    public static synchronized ChatoBaseApplication getInstance() {
+    public void setUserInfo(int id, String name, String email, String photo){
+
+    }
+
+    public static synchronized ChatoBaseApplicationOld getInstance() {
         return instance;
     }
 

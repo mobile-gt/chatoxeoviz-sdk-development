@@ -24,9 +24,6 @@ import com.gamatechno.ggfw_ui.ui.TouchImageView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ImageViewActivity extends ChatoPermissionActivity {
 
 
@@ -101,7 +98,7 @@ public class ImageViewActivity extends ChatoPermissionActivity {
 
                     Picasso.get()
                             .load(img)
-                            .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                            .placeholder(ChatoBaseApplication.Companion.getInstance().getChatoPlaceholder())
                             .into(image, new Callback() {
                                 @Override
                                 public void onSuccess() {
@@ -117,7 +114,7 @@ public class ImageViewActivity extends ChatoPermissionActivity {
                 } else {
                     Picasso.get()
                             .load(file_uri)
-                            .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                            .placeholder(ChatoBaseApplication.Companion.getInstance().getChatoPlaceholder())
                             .into(image, new Callback() {
                                 @Override
                                 public void onSuccess() {
@@ -134,7 +131,7 @@ public class ImageViewActivity extends ChatoPermissionActivity {
             } else {
                 Picasso.get()
                         .load(img)
-                        .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                        .placeholder(ChatoBaseApplication.Companion.getInstance().getChatoPlaceholder())
                         .into(image, new Callback() {
                             @Override
                             public void onSuccess() {

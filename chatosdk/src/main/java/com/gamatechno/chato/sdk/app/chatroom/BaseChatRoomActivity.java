@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.gamatechno.chato.sdk.app.main.ChatoActivity;
+import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +32,7 @@ import com.gamatechno.chato.sdk.data.model.ListentoRoomModel;
 import com.gamatechno.chato.sdk.data.model.PublishToRoom;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
 import com.gamatechno.chato.sdk.module.activity.ChatoPermissionActivity;
-import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication;
+import com.gamatechno.chato.sdk.module.core.ChatoBaseApplicationOld;
 import com.gamatechno.chato.sdk.utils.DetectHtml;
 import com.gamatechno.chato.sdk.utils.Loading;
 import com.gamatechno.chato.sdk.utils.ChatoEditText.ChatEditText;
@@ -352,7 +352,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
                     startActivity(new Intent(getContext(), ChatoActivity.class));
                 }*/
                 finish();
-                ChatoBaseApplication.getInstance().cancelPendingChatoRequest();
+                ChatoBaseApplication.Companion.getInstance().cancelPendingChatoRequest();
             }
         });
 

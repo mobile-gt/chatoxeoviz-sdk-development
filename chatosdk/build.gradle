@@ -49,6 +49,7 @@ android {
         addUrl("stringUpdateStatusMessage", "apix/chat/updateStatusMessage")
         addUrl("stringlistRoomGroup", "apix/chat/getListRoomGroup")
         addUrl("stringUpdateDeviceToken", "apix/updateDeviceToken")
+        addUrl("stringGetCustomerToken", "api/getToken")
         addUrl("stringPinnedChatRoom", "apix/chat/pinedRoom")
         addUrl("stringStarMessage", "apix/chat/startMessage")
         addUrl("stringSearchMessage", "apix/chat/searchMessage")

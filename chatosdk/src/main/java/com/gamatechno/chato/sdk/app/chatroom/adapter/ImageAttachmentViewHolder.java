@@ -88,7 +88,7 @@ public class ImageAttachmentViewHolder extends BaseChatViewHolder {
                 if(!IOUtils.isFileExist(file_uri.toString().replace("file:/", ""))){
                     Picasso.get()
                             .load(chat.getMessage_attachment())
-                            .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                            .placeholder(ChatoBaseApplication.Companion.getInstance().getChatoPlaceholder())
                             .transform(new BitmapTransform())
                             .into(image_attachment, new Callback() {
                                 @Override
@@ -105,7 +105,7 @@ public class ImageAttachmentViewHolder extends BaseChatViewHolder {
                 } else {
                     Picasso.get()
                             .load(file_uri)
-                            .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                            .placeholder(ChatoBaseApplication.Companion.getInstance().getChatoPlaceholder())
                             .transform(new BitmapTransform())
                             .into(image_attachment, new Callback() {
                                 @Override

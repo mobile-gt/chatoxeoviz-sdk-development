@@ -2,15 +2,15 @@ package com.gamatechno.chato.sdk.app.grouproomdetail
 
 import android.app.Activity
 import android.app.ActivityOptions
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.core.view.ViewCompat
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.ViewCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.gamatechno.chato.sdk.R
 import com.gamatechno.chato.sdk.app.chatroom.BaseChatRoomActivity
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel
@@ -20,11 +20,11 @@ import com.gamatechno.chato.sdk.app.grouproomdetail.fragment.setting.GroupSettin
 import com.gamatechno.chato.sdk.app.grouproomdetail.viewmodel.GroupInfoViewModel
 import com.gamatechno.chato.sdk.app.photopreview.ImageViewActivity
 import com.gamatechno.chato.sdk.data.DAO.Group.Group
-import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication
+import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication.Companion.instance
 import com.gamatechno.chato.sdk.module.dialogs.DialogImagePicker.DialogImagePicker
+import com.gamatechno.chato.sdk.utils.ChatoUtils
 import com.gamatechno.chato.sdk.utils.ImageUploader
 import com.gamatechno.chato.sdk.utils.Loading
-import com.gamatechno.chato.sdk.utils.ChatoUtils
 import com.gamatechno.ggfw.Activity.Interfaces.PermissionResultInterface
 import com.gamatechno.ggfw.easyphotopicker.DefaultCallback
 import com.gamatechno.ggfw.easyphotopicker.EasyImage
@@ -76,7 +76,7 @@ class GroupInfoActivity : BaseChatRoomActivity(), GroupInfoView.View {
 //                Log.d("imageView", "imagePrev: " + group.room_photo_url)
                 Picasso.get()
                         .load((if(group.room_photo_url.equals("")) "" else group.room_photo_url))
-                        .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                        .placeholder(instance.getChatoPlaceholder())
                         .into(avatar_header)
             } else {
                 finish()
@@ -321,7 +321,7 @@ class GroupInfoActivity : BaseChatRoomActivity(), GroupInfoView.View {
                         group.room_photo_url = url
                         Picasso.get()
                                 .load((if(group.room_photo_url.equals("")) "" else group.room_photo_url))
-                                .placeholder(ChatoBaseApplication.getInstance().getChatoPlaceholder())
+                                .placeholder(instance.getChatoPlaceholder())
                                 .into(avatar_header, object : Callback {
                                     override fun onSuccess() {
                                         photo_progress.visibility = View.GONE
