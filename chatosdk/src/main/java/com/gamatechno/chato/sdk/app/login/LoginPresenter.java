@@ -119,6 +119,10 @@ public class LoginPresenter extends BasePresenter implements LoginView.Presenter
             public Map<String, String> requestParam() {
                 Map<String, String> params = new HashMap<>();
                 params.put("jwt_client", token);
+                if(customer!=null){
+                    params.put("customer_app_id", ""+customer.getCustomer_app_id());
+                    params.put("customer_secret", ""+customer.getCustomer_secret());
+                }
                 return params;
             }
 
