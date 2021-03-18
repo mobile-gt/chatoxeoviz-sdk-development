@@ -161,7 +161,7 @@ public class ChatoFragment extends FragmentPermission implements ChatView.View, 
         super.onViewCreated(view, savedInstanceState);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("");
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("");
 
         initView(view);
         initSearchChatroom();
