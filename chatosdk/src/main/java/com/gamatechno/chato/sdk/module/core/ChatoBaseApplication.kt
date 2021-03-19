@@ -30,6 +30,8 @@ open class ChatoBaseApplication : Application() {
 
     private var chato_placeholder: Int = R.drawable.ic_placeholder
 
+    public var KEY = ""
+
     override fun onCreate() {
         super.onCreate()
         instance = this
@@ -91,10 +93,10 @@ open class ChatoBaseApplication : Application() {
     }
 
     fun setUserInfo(
-        id: Int,
-        name: String?,
-        email: String?,
-        photo: String?
+            id: Int,
+            name: String?,
+            email: String?,
+            photo: String?
     ) {
         var userModel : UserModel
         if(!GGFWUtil.getStringFromSP(this, Preferences.USER_LOGIN).equals("")){
@@ -115,8 +117,8 @@ open class ChatoBaseApplication : Application() {
         Log.d("BaseApplication", "getRequestQueue : ")
         if (requestQueue == null) {
             Log.d(
-                "BaseApplication",
-                "getRequestQueue : make new instance "
+                    "BaseApplication",
+                    "getRequestQueue : make new instance "
             )
             requestQueue = Volley.newRequestQueue(applicationContext)
         }
@@ -124,21 +126,21 @@ open class ChatoBaseApplication : Application() {
     }
 
     fun <T> addToChatoRequestQueue(
-        request: Request<T>,
-        tag: String?
+            request: Request<T>,
+            tag: String?
     ) {
         request.tag = tag
 
         // set retry policy
         request.retryPolicy = DefaultRetryPolicy(
-            TIMEOUT_MS,
-            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         )
         request.setShouldCache(false)
         Log.d(
-            "BaseApplication",
-            "addToRequestQueue : " + request.url
+                "BaseApplication",
+                "addToRequestQueue : " + request.url
         )
         getChatoRequestQueue()!!.add(request)
     }

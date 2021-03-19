@@ -1,9 +1,10 @@
 package com.gamatechno.chato.sdk.data.constant;
 
 import com.gamatechno.chato.sdk.BuildConfig;
+import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication;
 
 public class StringConstant {
-    private static String package_name = BuildConfig.LIBRARY_PACKAGE_NAME;
+    private static String package_name = ChatoBaseApplication.getInstance().getKEY()+"_"+BuildConfig.LIBRARY_PACKAGE_NAME;
 
     public static final String DB_NAME = "chato";
 
@@ -36,7 +37,7 @@ public class StringConstant {
     public static final String service_status_stop = package_name+"_service_status_stop";
     public static final String service_check_stop = package_name+"_service_check_stop";
 
-//    Flag untuk meminta request service group list
+    //    Flag untuk meminta request service group list
     public static final String service_requestgroup_tofirebase_register = package_name+"_service_requestgroup_firebase_register";
 
     //    Flag untuk mematikan service
@@ -63,7 +64,7 @@ public class StringConstant {
     public static final String chatroom_state_open_to_room = package_name+"_chatroom_state_open_to_room";
     public static final String chatroom_state_out_from_room = package_name+"_chatroom_state_out_from_room";
 
-//    public static final String SERVICECHAT_RECEIVE_MESSAGE      = "received message";
+    //    public static final String SERVICECHAT_RECEIVE_MESSAGE      = "received message";
     public static final String SERVICECHAT_RECEIVE_MESSAGE      = "listen";
     public static final String SERVICECHAT_RECEIVE_UPDATESTATUS = "listen_update_status";
     public static final String SERVICECHAT_LISTEN_TO_ROOM = "listen_to_room";

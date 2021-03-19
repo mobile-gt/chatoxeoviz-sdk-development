@@ -149,11 +149,19 @@ public class ChatoFragment extends FragmentPermission implements ChatView.View, 
     private Timer timer = new Timer();
     private final long DELAY = 1000; // milliseconds
 
+    private View rootview;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_chato, container, false);
-        return rootView;
+        rootview = inflater.inflate(R.layout.activity_chato, container, false);
+        return rootview;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
     }
 
     @Override
