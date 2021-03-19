@@ -278,7 +278,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':chatosdk:chato-emoticon')
     implementation project(':chatosdk:chato-widget')
-    implementation project(":chatosdk:ggfw")
+    api project(":chatosdk:ggfw")
     implementation project(":chatosdk:ggfw-ui")
 
     //    implementation 'org.apache.commons:commons-collections4:4.4'
