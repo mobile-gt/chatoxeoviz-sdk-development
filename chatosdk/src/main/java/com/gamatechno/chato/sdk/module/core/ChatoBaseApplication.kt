@@ -22,8 +22,6 @@ open class ChatoBaseApplication : Application() {
 
     private var requestQueue: RequestQueue? = null
 
-    lateinit var loginPresenter : LoginPresenter
-
     companion object {
         @JvmStatic
         lateinit var instance: ChatoBaseApplication
@@ -37,8 +35,23 @@ open class ChatoBaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+    }
 
-        loginPresenter = LoginPresenter(this, object : LoginView.View{
+    fun getChatoPlaceholder(): Int {
+        return chato_placeholder
+    }
+
+    fun setChatoPlaceholder(drawable: Int) {
+        chato_placeholder = drawable
+    }
+
+    fun logout(){
+        GGFWUtil.setStringToSP(this, Preferences.CUSTOMER_INFO, "")
+        GGFWUtil.setStringToSP(this, Preferences.USER_LOGIN, "")
+    }
+
+    fun setChatoFirebaseToken(token : String){
+        LoginPresenter(this, object : LoginView.View{
             override fun onErrorConnection(message: String?) {
 
             }
@@ -67,25 +80,41 @@ open class ChatoBaseApplication : Application() {
 
             }
 
-        })
-    }
-
-    fun getChatoPlaceholder(): Int {
-        return chato_placeholder
-    }
-
-    fun setChatoPlaceholder(drawable: Int) {
-        chato_placeholder = drawable
-    }
-
-    fun logout(){
-        GGFWUtil.setStringToSP(this, Preferences.CUSTOMER_INFO, "")
-        GGFWUtil.setStringToSP(this, Preferences.USER_LOGIN, "")
+        }).updateTokenFirebase(token)
     }
 
     fun setChatoToken(token : String, authInteractor: AuthInteractor){
         ChatoSDKMapper.setCustomer(this, "chato-46A423073543CDA4AF73091DD37F8B1D", "AIZ-FEEEA8A22C8BFB300AD10BD810164E22")
-        loginPresenter.getOfficialToken(token, object : LoginView.ClientView{
+        LoginPresenter(this, object : LoginView.View{
+            override fun onErrorConnection(message: String?) {
+
+            }
+
+            override fun onAuthFailed(error: String?) {
+
+            }
+
+            override fun onFailedUpdateTokenFirebase() {
+
+            }
+
+            override fun onHideLoading() {
+
+            }
+
+            override fun onLoading() {
+
+            }
+
+            override fun onSucces() {
+
+            }
+
+            override fun onSuccessUpdateTokenFirebase() {
+
+            }
+
+        }).getOfficialToken(token, object : LoginView.ClientView{
             override fun onAuthResult(isSuccess: Boolean?, message: String?) {
                 authInteractor.authResult(isSuccess, message)
             }
