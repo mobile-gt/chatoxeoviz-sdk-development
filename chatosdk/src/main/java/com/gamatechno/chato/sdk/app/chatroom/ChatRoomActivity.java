@@ -352,6 +352,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     }
 
     private void initData(){
+        Log.d("KENALOG", "data nya " + getIntent().getStringExtra("chatBirthday"));
         if(getIntent().hasExtra("data")){
             KontakModel kontakModel = (KontakModel) getIntent().getSerializableExtra("data");
             Log.d(TAG, "initData: name:"+ kontakModel.getGroup_name() + "getRoomType" + kontakModel.getRoom_type());
@@ -396,6 +397,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             }
             is_forward = true;
         } else if(getIntent().hasExtra("chatBirthday")) {
+            Log.d("KENALOG", "masuk sini gak beb?");
             edt_message.setText(getIntent().getStringExtra("chatBirthday"));
         } else {
             finish();
