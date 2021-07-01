@@ -7,6 +7,7 @@ public interface UserRoomDetailView {
     interface Presenter{
         void requestRoomDetail(String room_id);
         void requestRoomDetail(String room_id, String room_code);
+        void requestRoomBirthday(String email);
     }
 
     interface View extends BaseView {

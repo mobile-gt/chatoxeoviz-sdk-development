@@ -128,4 +128,56 @@ public class UserRoomDetailPresenter extends BasePresenter implements UserRoomDe
             }
         });
     }
+
+    @Override
+    public void requestRoomBirthday(String email) {
+        GGFWRest.GETAuth(Api.get_room_birthday(email), getContext(), new RequestInterface.OnAuthGetRequest() {
+            @Override
+            public void onPreExecuted() {
+                view.onLoading();
+            }
+
+            @Override
+            public void onSuccess(JSONObject response) {
+                view.onHideLoading();
+                try {
+                    if(response.getBoolean("success")){
+                        view.onRequestRoomDetail(getGson().fromJson(response.getJSONObject("result").toString(), RoomDetailUiModel.class));
+                    } else {
+                        view.onErrorConnection(response.getString("message"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(String error) {
+                view.onHideLoading();
+                view.onErrorConnection("");
+            }
+
+            @Override
+            public void onUnauthorized(String error) {
+                view.onAuthFailed(error);
+            }
+
+            @Override
+            public Map<String, String> requestParam() {
+                return null;
+            }
+
+            @Override
+            public Map<String, String> requestHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + ChatoUtils.getUserLogin(getContext()).getAccess_token());
+                if(customer!=null){
+                    headers.put("customer_app_id", ""+customer.getCustomer_app_id());
+                    headers.put("customer_secret", ""+customer.getCustomer_secret());
+                }
+                Log.d("asdHeaders ", " requestParam: "+headers);
+                return headers;
+            }
+        });
+    }
 }

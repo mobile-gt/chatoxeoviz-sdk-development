@@ -395,6 +395,8 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                     break;
             }
             is_forward = true;
+        } else if(getIntent().hasExtra("chatBirthday")) {
+            edt_message.setText(getIntent().getStringExtra("chatBirthday"));
         } else {
             finish();
         }

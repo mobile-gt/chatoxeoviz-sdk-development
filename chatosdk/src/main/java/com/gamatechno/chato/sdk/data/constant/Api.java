@@ -56,6 +56,10 @@ public class Api {
         return base_api + BuildConfig.stringRoomDetailv2+"?room_code="+room_code;
     }
 
+    public static String get_room_birthday(String email) {
+        return base_api + BuildConfig.stringRoomEmail+"?email="+email;
+    }
+
     public static String list_groupConversation(String page, String order_by) {
         return base_api + BuildConfig.stringListGroup+"?page="+page+"&sort_by="+order_by;
     }

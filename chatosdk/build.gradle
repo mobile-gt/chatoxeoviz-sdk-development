@@ -36,6 +36,7 @@ android {
 //        addUrl("stringListConversation", "apix/v2/chat/getListRoom")
         addUrl("stringListConversation", "apix/chat/getListRoom")
         addUrl("stringRoomDetailv2", "apix/v2/chat/getRoomDetail")
+        addUrl("stringRoomEmail", "apix/v2/chat/getRoomDetailByEmail")
         addUrl("stringRoomDetail", "apix/chat/getRoomDetail")
         addUrl("stringListGroup", "apix/chat/getGroupList")
         addUrl("stringSearchConversation", "apix/chat/searchChat")
