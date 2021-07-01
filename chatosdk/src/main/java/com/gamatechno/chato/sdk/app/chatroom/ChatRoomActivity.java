@@ -371,6 +371,8 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
             if(getIntent().hasExtra("chatBirthday")) {
                 edt_message.setText(getIntent().getStringExtra("chatBirthday"));
+                lay_menu_attach.setVisibility(View.GONE);
+                edt_message.requestFocus();
             }
         } else if(getIntent().hasExtra(StringConstant.notification_message)){
             isFinishNeedtoIn = true;
