@@ -371,7 +371,9 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
             if(getIntent().hasExtra("chatBirthday")) {
                 edt_message.setText(getIntent().getStringExtra("chatBirthday"));
+                /*TYPE_ATTACHMENT = TYPE_MESSAGE;
                 lay_menu_attach.setVisibility(View.GONE);
+                img_send.setVisibility(View.VISIBLE);*/
                 edt_message.requestFocus();
             }
         } else if(getIntent().hasExtra(StringConstant.notification_message)){
