@@ -371,6 +371,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
             if(getIntent().hasExtra("chatBirthday")) {
                 Log.d("KENALOG", "masuk sini gak beb?");
+                TYPE_ATTACHMENT = TYPE_MESSAGE;
                 edt_message.setText(getIntent().getStringExtra("chatBirthday"));
                 prepareToSendMessage();
             }
