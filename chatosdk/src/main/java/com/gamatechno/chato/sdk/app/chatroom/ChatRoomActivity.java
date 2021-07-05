@@ -79,6 +79,7 @@ import com.gamatechno.ggfw.utils.AlertDialogBuilder;
 import com.gamatechno.ggfw.utils.GGFWUtil;
 import com.gamatechno.ggfw_ui.avatarview.AvatarPlaceholder;
 import com.gamatechno.ggfw_ui.avatarview.loader.PicassoLoader;
+import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 
@@ -138,10 +139,12 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             Log.d(TAG, "Receiving....");
             if (action.equals(StringConstant.broadcast_receive_status_chat)) {
                 ChatListModel chatListModel = (ChatListModel) intent.getSerializableExtra("data");
+                Log.d("KENALOG", "list chat1 " + new Gson().toJson(chatListModel));
                 checkListMessageStatus(chatListModel.getChatList());
                 adapter.notifiyListChanged();
             } else if(action.equals(StringConstant.broadcast_receive_chat)){
                 Chat chat = (Chat) intent.getSerializableExtra("data");
+                Log.d("KENALOG", "list chat2 " + new Gson().toJson(chat));
                 sendStatusReadMessage(chat);
                 chatList.add(chat);
                 adapter.notifyDataSetChanged();
