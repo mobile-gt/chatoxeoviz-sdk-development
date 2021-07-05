@@ -120,6 +120,13 @@
                     <ImageView
                         android:clickable="true"
                         android:layout_marginLeft="@dimen/dimen_16dp"
+                        android:id="@+id/img_reaction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_emoji_reaction"/>
+                    <ImageView
+                        android:clickable="true"
+                        android:layout_marginLeft="@dimen/dimen_16dp"
                         android:id="@+id/img_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
