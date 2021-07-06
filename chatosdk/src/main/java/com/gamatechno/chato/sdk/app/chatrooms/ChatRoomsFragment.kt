@@ -281,6 +281,7 @@ class ChatRoomsFragment : Fragment(), ChatRoomsView.View {
     override fun onRequestObrolan(list: List<ChatRoomsUiModel?>?, isRefresh: Boolean) {
         isLoadMore = true
         helper_noconversation!!.visibility = View.GONE
+        Log.d("KENALOG", "list chat $list")
         roomAdapter!!.addData(isRefresh, list)
         if (roomAdapter!!.data.size == 0) helper_noconversation!!.visibility = View.VISIBLE else helper_noconversation!!.visibility = View.GONE
     }
