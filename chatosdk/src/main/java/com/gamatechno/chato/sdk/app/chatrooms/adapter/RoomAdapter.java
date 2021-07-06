@@ -11,6 +11,8 @@ import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.app.chatrooms.uimodel.ChatRoomsUiModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
@@ -45,6 +47,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     public void addData(boolean isRefresh, List<ChatRoomsUiModel> list){
         if(isRefresh)
             chatList.clear();
+
+        Collections.sort(list, (lhs, rhs) ->
+                rhs.getRoomChat().getRoom_type().compareTo(lhs.getRoomChat().getRoom_type()));
+
         chatList.addAll(list);
         notifyDataSetChanged();
     }
