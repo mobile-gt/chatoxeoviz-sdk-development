@@ -141,6 +141,8 @@ public class ChatoFragment extends FragmentPermission implements ChatView.View, 
 
     String imagepicker_code = "";
 
+    private MainViewModel model = new MainViewModel();
+
     public static ChatoFragment newInstance() {
         ChatoFragment fragment = new ChatoFragment();
         return fragment;
@@ -286,7 +288,7 @@ public class ChatoFragment extends FragmentPermission implements ChatView.View, 
     }
 
     private void setTabAdapter() {
-        viewPager.setAdapter(new Tab(getActivity().getSupportFragmentManager(), chatRoomsViewModel));
+        viewPager.setAdapter(new Tab(getActivity().getSupportFragmentManager(), chatRoomsViewModel, model));
         viewPager.setOffscreenPageLimit(0);
         tablayout.setupWithViewPager(viewPager);
         tablayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -447,10 +449,12 @@ public class ChatoFragment extends FragmentPermission implements ChatView.View, 
 
     private class Tab extends FragmentPagerAdapter {
         ChatRoomsViewModel viewModel;
+        MainViewModel model;
 
-        public Tab(FragmentManager fm, ChatRoomsViewModel viewModel) {
+        public Tab(FragmentManager fm, ChatRoomsViewModel viewModel, MainViewModel model) {
             super(fm);
             this.viewModel = viewModel;
+            this.model = model;
         }
 
         @Override
@@ -458,10 +462,10 @@ public class ChatoFragment extends FragmentPermission implements ChatView.View, 
             Fragment fragment = null;
             switch (position){
                 case 0 :
-                    fragment = ChatRoomsFragment.newInstance(false, viewModel);
+                    fragment = ChatRoomsFragment.newInstance(false, viewModel, model);
                     break;
                 case 1 :
-                    fragment = ChatRoomsFragment.newInstance(true, viewModel);
+                    fragment = ChatRoomsFragment.newInstance(true, viewModel, model);
                     break;
             }
             return fragment;
