@@ -33,6 +33,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.app.broadcastdirect.kontakbroadcast.ContactBroadcastActivity;
@@ -81,6 +82,13 @@ import com.gamatechno.ggfw_ui.avatarview.AvatarPlaceholder;
 import com.gamatechno.ggfw_ui.avatarview.loader.PicassoLoader;
 import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
+import com.withplum.emojibottomsheetdialog.emoji.EmojiCategoryTransformer;
+import com.withplum.emojibottomsheetdialog.emoji.categories.ActivitiesCategory;
+import com.withplum.emojibottomsheetdialog.emoji.categories.Category;
+import com.withplum.emojibottomsheetdialog.emoji.categoryUnicodes.AnimalsNatureCategoryUnicodes;
+import com.withplum.emojibottomsheetdialog.view.EmojiClickListener;
+import com.withplum.emojibottomsheetdialog.view.EmojiPickerDialog;
+import com.withplum.emojibottomsheetdialog.view.recyclerview.EmojiItemView;
 
 
 import java.io.File;
@@ -89,7 +97,10 @@ import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Locale;
 
@@ -120,6 +131,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     Bitmap thumb_file_attachment = null;
     String duration_file_attachment = "";
     IntentFilter filter;
+    private List<EmojiItemView> emojiItemViewList;
 
     KontakChatDialog kontakChatDialog;
 
@@ -318,6 +330,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         img_send.setOnClickListener(this);
         img_action_back.setOnClickListener(this);
         container_pinned_message.setOnClickListener(this);
+        img_reaction.setOnClickListener(this);
         img_copy.setOnClickListener(this);
         img_forward.setOnClickListener(this);
         img_reply.setOnClickListener(this);
@@ -328,6 +341,8 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         lay_detail_room.setOnClickListener(this);
         edt_message.setOnClickListener(this);
         lay_menu.setOnClickListener(this);
+
+        initializeEmojiCategoriesPreferred();
 
         if(chatRoomUiModel.getType().equals(RoomChat.official_room_type)){
             lay_detail_room.setClickable(false);
@@ -350,6 +365,30 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             setToolbar(chatRoomUiModel);
             GGFWUtil.setStringToSP(getContext(), Preferences.OPENED_CHATROOM_ID, chatRoomUiModel.getRoom_id());
         }
+    }
+
+    private void initializeEmojiCategoriesPreferred(){
+        emojiItemViewList = new EmojiCategoryTransformer().transform(initializeEmojiCategoryList());
+    }
+
+    private void showEmojiDialog(){
+        EmojiPickerDialog.Builder dialogBuilder = new EmojiPickerDialog.Builder(
+                this,
+                emojiItemViewList,
+                getResources().getString(R.string.emojiDialogTitle),
+                true,
+                true,
+                unicode -> Toast.makeText(ChatRoomActivity.this, "ini kode emoji : "+ unicode.getValue(), Toast.LENGTH_LONG).show());
+        dialogBuilder.build().show();
+    }
+
+    private List<Category> initializeEmojiCategoryList(){
+        List<Category> list = new ArrayList<Category>();
+
+        ActivitiesCategory activitiesCategory = new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), null);
+
+        list.add(new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), null));
+        return list;
     }
 
     private void initData(){
@@ -421,6 +460,13 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             @Override
             public void onChanged(@Nullable String s) {
                 switch (s){
+                    case StringConstant.appbar_reaction:
+                        /* todo show emoji bottom sheet
+                        presenter.copyChat(ChatroomHelper.getSelectedChatList(chatList));
+                        sterilizeChat();
+                         */
+                        showEmojiDialog();
+                        break;
                     case StringConstant.appbar_copy:
                         presenter.copyChat(ChatroomHelper.getSelectedChatList(chatList));
                         sterilizeChat();
@@ -948,6 +994,8 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                     dialog.dismiss();
                 }
             });
+        } else if (id == R.id.img_reaction) {
+            viewModel.updateAppbarAction(StringConstant.appbar_reaction);
         } else if (id == R.id.img_copy) {
             viewModel.updateAppbarAction(StringConstant.appbar_copy);
         } else if (id == R.id.img_forward) {
@@ -1509,6 +1557,11 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             chatList.add(c);
         }
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onSuccessReaction() {
+        // TODO: 06/07/2021  
     }
 
     @Override

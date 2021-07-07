@@ -114,6 +114,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
     AnimationToggle appbar_action;
     ImageView img_action_back;
     ImageView img_forward;
+    ImageView img_reaction;
     ImageView img_info;
     ImageView img_pinmessage;
     ImageView img_copy;
@@ -395,6 +396,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
 
             if(!isRoomAGroup(chatRoomUiModel)){
                 appbar_action.hide(img_pinmessage);
+                appbar_action.hide(img_reaction);
             } else {
                 if(grouproom.getRoom_group_type().equals("BROADCAST")){
                     appbar_action.hide(img_pinmessage);
@@ -412,6 +414,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
     protected void setList_actionAppbar(){
         list_actionAppbar = new ArrayList<>();
 //        list_actionAppbar.add(img_forward);
+        list_actionAppbar.add(img_reaction);
         list_actionAppbar.add(img_copy);
         list_actionAppbar.add(img_pinmessage);
         list_actionAppbar.add(img_reply);
@@ -501,6 +504,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
         appbar_action = findViewById(R.id.appbar_action);
         img_action_back = findViewById(R.id.img_action_back);
         img_forward = findViewById(R.id.img_forward);
+        img_reaction = findViewById(R.id.img_reaction);
         img_info = findViewById(R.id.img_info);
         img_pinmessage = findViewById(R.id.img_pinmessage);
         img_copy = findViewById(R.id.img_copy);

@@ -281,6 +281,7 @@ dependencies {
     implementation project(':chatosdk:chato-widget')
     api project(":chatosdk:ggfw")
     implementation project(":chatosdk:ggfw-ui")
+    implementation project(path: ':emojiBottomSheetDialog')
 
     //    implementation 'org.apache.commons:commons-collections4:4.4'
 //    implementation 'commons-codec:commons-codec:1.9@jar'

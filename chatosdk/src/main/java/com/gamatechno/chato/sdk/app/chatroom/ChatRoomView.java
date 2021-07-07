@@ -17,6 +17,7 @@ public interface ChatRoomView {
         void sendStatusMessage(List<Chat> chatList);
         void checkSelectedChat(List<Chat> chatList);
         void copyChat(List<Chat> chatList);
+        void reactionChat(Chat chat);
         void starChat(Chat chat, String chatroom_id);
         void downloadFileFromChatToForward(Chat chat, KontakModel kontakModel);
         void requestDeleteMessage(List<Chat> messages, String own_message);
@@ -45,6 +46,7 @@ public interface ChatRoomView {
 
         void onSearchChat(List<Chat> chats);
 
+        void onSuccessReaction();
         void openFile(String uri);
         void onGetMessageInfo(Chat chat, String time_delivered, String time_read);
         void onGetGroupMessageInfo(Chat chat, List<KontakModel> terkirim, List<KontakModel> terbaca);

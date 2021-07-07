@@ -88,6 +88,7 @@ public class StringConstant {
     public static final String appbar_delete = "appbar_delete";
     public static final String appbar_star = "appbar_star";
     public static final String appbar_copy = "appbar_copy";
+    public static final String appbar_reaction = "appbar_reaction";
     public static final String appbar_info = "appbar_info";
     public static final String appbar_pinmessage = "appbar_pinmessage";
 

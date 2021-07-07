@@ -445,6 +445,11 @@ public class ChatRoomPresenter extends BasePresenter implements ChatRoomView.Pre
     }
 
     @Override
+    public void reactionChat(Chat chat) {
+        // TODO: 06/07/2021  
+    }
+
+    @Override
     public void starChat(Chat chat, String chatroom_id) {
         GGFWRest.POST(Api.star_message(), new RequestInterface.OnPostRequest() {
             @Override
