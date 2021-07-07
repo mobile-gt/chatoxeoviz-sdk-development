@@ -20,6 +20,7 @@ import com.gamatechno.chato.sdk.app.chatrooms.adapter.RoomFilterAdapter
 import com.gamatechno.chato.sdk.app.chatrooms.helper.ChatRoomsHelper
 import com.gamatechno.chato.sdk.app.chatrooms.uimodel.ChatRoomsUiModel
 import com.gamatechno.chato.sdk.app.chatrooms.viewmodel.ChatRoomsViewModel
+import com.gamatechno.chato.sdk.app.main.MainViewModel
 import com.gamatechno.chato.sdk.data.DAO.Label.LabelModel
 import com.gamatechno.chato.sdk.data.constant.StringConstant
 import com.gamatechno.chato.sdk.module.request.GGFWRest
@@ -35,6 +36,7 @@ class ChatRoomsFragment : Fragment(), ChatRoomsView.View {
     var roomAdapter: RoomAdapter? = null
     var obrolanPresenter: ChatRoomsPresenter? = null
     var viewModel: ChatRoomsViewModel? = null
+    var model: MainViewModel? = null
     var isLoadMore = true
     var filter: IntentFilter? = null
     var keyword = ""
@@ -322,15 +324,20 @@ class ChatRoomsFragment : Fragment(), ChatRoomsView.View {
         Log.d(TAG, "onResume: " + FirebaseInstanceId.getInstance().token)
         context!!.registerReceiver(receiver, filter)
         obrolanPresenter!!.requestObrolan(true, keyword, filter_adapter.getSortBy())
+
+        model!!.initClick().observe(this, Observer {
+            roomAdapter!!.filterChat(it)
+        })
     }
 
     companion object {
         private val TAG = ChatRoomsFragment::class.java.simpleName
         @JvmStatic
-        fun newInstance(isGroup: Boolean, viewModel: ChatRoomsViewModel): ChatRoomsFragment {
+        fun newInstance(isGroup: Boolean, viewModel: ChatRoomsViewModel, model: MainViewModel): ChatRoomsFragment {
             val fragment = ChatRoomsFragment()
             fragment.isGroup = isGroup
             fragment.viewModel = viewModel
+            fragment.model = model
             return fragment
         }
     }

@@ -55,6 +55,18 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         notifyDataSetChanged();
     }
 
+    public void filterChat(int type) {
+        if (type == 1) {
+            Collections.sort(chatList, (lhs, rhs) ->
+                    lhs.getRoomChat().getRoom_name().compareTo(rhs.getRoomChat().getRoom_name()));
+            notifyDataSetChanged();
+        } else if (type == 2) {
+            Collections.sort(chatList, (lhs, rhs) ->
+                    rhs.getRoomChat().getRoom_name().compareTo(lhs.getRoomChat().getRoom_name()));
+            notifyDataSetChanged();
+        }
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

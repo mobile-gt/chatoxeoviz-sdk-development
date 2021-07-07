@@ -30,11 +30,11 @@
         android:orderInCategory="100"
         android:title="Search"
         app:showAsAction="always" />
-    <!--<item
+    <item
         android:id="@+id/action_filter"
         android:icon="@drawable/ic_filter_list_black_24dp"
         android:title="Filter"
         android:orderInCategory="100"
-        app:showAsAction="always" />-->
+        app:showAsAction="always" />
 
 </menu>

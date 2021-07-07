@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -145,6 +147,9 @@ public class ChatoActivity extends ChatoPermissionActivity implements ChatView.V
     private Timer timer = new Timer();
     private final long DELAY = 1000; // milliseconds
 
+    private MainViewModel viewModel = new MainViewModel();
+    private int dataVieModel = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -267,10 +272,18 @@ public class ChatoActivity extends ChatoPermissionActivity implements ChatView.V
         img_label.setOnClickListener(this);
         img_delete_chat.setOnClickListener(this);
         img_clear_search.setOnClickListener(this);
+
+        viewModel.initClick().observe(this, integer -> {
+            if (integer != null) {
+                dataVieModel = integer;
+            } else {
+                dataVieModel = 0;
+            }
+        });
     }
 
     private void setTabAdapter() {
-        viewPager.setAdapter(new Tab(getSupportFragmentManager(), chatRoomsViewModel));
+        viewPager.setAdapter(new Tab(getSupportFragmentManager(), chatRoomsViewModel, viewModel));
         viewPager.setOffscreenPageLimit(0);
         tablayout.setupWithViewPager(viewPager);
         tablayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -380,8 +393,33 @@ public class ChatoActivity extends ChatoPermissionActivity implements ChatView.V
         int itemId = item.getItemId();
         if (itemId == R.id.action_search) {
             showOrHideTopView(false, true);
+        } else if (itemId == R.id.action_filter) {
+            showFilterDialog();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showFilterDialog() {
+        Dialog filterDialog = new Dialog(this);
+        filterDialog.setContentView(R.layout.dialog_filter_chat);
+        filterDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        filterDialog.setCancelable(true);
+        filterDialog.setCanceledOnTouchOutside(true);
+
+        TextView filterAZ = filterDialog.findViewById(R.id.filterAZ);
+        TextView filterZA = filterDialog.findViewById(R.id.filterZA);
+
+        filterAZ.setOnClickListener(v -> {
+            viewModel.isClicked(1);
+            filterDialog.dismiss();
+        });
+
+        filterZA.setOnClickListener(v -> {
+            viewModel.isClicked(2);
+            filterDialog.dismiss();
+        });
+
+        filterDialog.show();
     }
 
     @Override
@@ -431,10 +469,12 @@ public class ChatoActivity extends ChatoPermissionActivity implements ChatView.V
 
     private class Tab extends FragmentPagerAdapter {
         ChatRoomsViewModel viewModel;
+        MainViewModel model;
 
-        public Tab(FragmentManager fm, ChatRoomsViewModel viewModel) {
+        public Tab(FragmentManager fm, ChatRoomsViewModel viewModel, MainViewModel model) {
             super(fm);
             this.viewModel = viewModel;
+            this.model = model;
         }
 
         @Override
@@ -442,10 +482,10 @@ public class ChatoActivity extends ChatoPermissionActivity implements ChatView.V
             Fragment fragment = null;
             switch (position){
                 case 0 :
-                    fragment = ChatRoomsFragment.newInstance(false, viewModel);
+                    fragment = ChatRoomsFragment.newInstance(false, viewModel, model);
                     break;
                 case 1 :
-                    fragment = ChatRoomsFragment.newInstance(true, viewModel);
+                    fragment = ChatRoomsFragment.newInstance(true, viewModel, model);
                     break;
             }
             return fragment;
