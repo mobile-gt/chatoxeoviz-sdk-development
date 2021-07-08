@@ -1,6 +1,7 @@
 package com.gamatechno.chato.sdk.app.chatrooms.adapter;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,11 +19,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
     List<ChatRoomsUiModel> chatList;
-//    List<ChatRoomsUiModel> chatListSort;
     OnObrolanAdapter onObrolanAdapter;
 
     boolean isLoading = false;
@@ -30,38 +30,32 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     public RoomAdapter(Context context, List<ChatRoomsUiModel> chatList, OnObrolanAdapter onObrolanAdapter) {
         this.context = context;
         this.chatList = chatList;
-//        chatListSort = this.chatList;
         this.onObrolanAdapter = onObrolanAdapter;
     }
 
     public RoomAdapter(Context context, OnObrolanAdapter onObrolanAdapter) {
         this.context = context;
         this.chatList = new ArrayList();
-//        chatListSort = this.chatList;
         this.onObrolanAdapter = onObrolanAdapter;
     }
 
-    public void initLoading(boolean istrue){
+    public void initLoading(boolean istrue) {
         isLoading = istrue;
         notifyDataSetChanged();
     }
 
-    public List<ChatRoomsUiModel> getData(){
+    public List<ChatRoomsUiModel> getData() {
         return chatList;
-//        return chatListSort;
     }
 
-    public void addData(boolean isRefresh, List<ChatRoomsUiModel> list){
-        if(isRefresh) {
+    public void addData(boolean isRefresh, List<ChatRoomsUiModel> list) {
+        if (isRefresh)
             chatList.clear();
-//            chatListSort.clear();
-        }
 
         Collections.sort(list, (lhs, rhs) ->
                 rhs.getRoomChat().getRoom_type().compareTo(lhs.getRoomChat().getRoom_type()));
 
         chatList.addAll(list);
-//        chatListSort.addAll(chatList);
         notifyDataSetChanged();
     }
 
@@ -74,12 +68,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
             Collections.sort(chatList, (lhs, rhs) ->
                     rhs.getRoomChat().getRoom_name().compareTo(lhs.getRoomChat().getRoom_name()));
             notifyDataSetChanged();
-        } /*else if (type == 3) {
-            Log.d("KENALOG", "data dari chatList" + new Gson().toJson(chatList));
-            chatListSort.clear();
-            chatListSort.addAll(chatList);
+        } else if (type == 3) {
+            Collections.sort(chatList, (lhs, rhs) ->
+                    rhs.getRoomChat().getRoom_type().compareTo(lhs.getRoomChat().getRoom_type()));
             notifyDataSetChanged();
-        }*/
+        }
     }
 
     @NonNull
@@ -92,11 +85,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        if(isLoading){
-            ((ChatroomViewHolder)viewHolder).bindLoading();
+        if (isLoading) {
+            ((ChatroomViewHolder) viewHolder).bindLoading();
         } else {
             ChatRoomsUiModel model = chatList.get(i);
-            ((ChatroomViewHolder)viewHolder).bindDatas(model);
+            ((ChatroomViewHolder) viewHolder).bindDatas(model);
 
             viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -117,7 +110,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     @Override
     public int getItemCount() {
-        if(isLoading){
+        if (isLoading) {
             return 4;
         } else {
             return chatList.size();
@@ -125,8 +118,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     }
 
-    public interface OnObrolanAdapter{
+    public interface OnObrolanAdapter {
         void onClickObrolan(ChatRoomsUiModel model);
+
         void onLongClick(ChatRoomsUiModel model);
     }
 }
