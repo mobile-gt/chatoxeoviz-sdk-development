@@ -190,6 +190,10 @@ public class Api {
         }
     }
 
+    public static String reaction_message() {
+        return base_api + BuildConfig.stringReactionChat;
+    }
+
     public static String list_room_media(String room_id) {
         if(room_id.equalsIgnoreCase("")) {
             return base_api + BuildConfig.stringListRoomMedia;

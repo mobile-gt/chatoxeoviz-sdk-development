@@ -12,15 +12,15 @@ import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
 import com.gamatechno.chato.sdk.app.kontakchat.KontakModel;
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat;
 import com.gamatechno.chato.sdk.data.DAO.Group.Group;
-import com.gamatechno.chato.sdk.data.model.UserModel;
 import com.gamatechno.chato.sdk.data.constant.Api;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
+import com.gamatechno.chato.sdk.data.model.UserModel;
 import com.gamatechno.chato.sdk.module.core.BasePresenter;
 import com.gamatechno.chato.sdk.module.request.GGFWRest;
 import com.gamatechno.chato.sdk.module.request.RequestInterface;
+import com.gamatechno.chato.sdk.utils.ChatoUtils;
 import com.gamatechno.chato.sdk.utils.FilePath.FilePath;
 import com.gamatechno.chato.sdk.utils.FilePath.IOUtils;
-import com.gamatechno.chato.sdk.utils.ChatoUtils;
 import com.gamatechno.chato.sdk.utils.downloader.Exception.GTDownloadException;
 import com.gamatechno.chato.sdk.utils.downloader.GTDownloadCallback;
 import com.gamatechno.chato.sdk.utils.downloader.GTDownloadManager;
@@ -445,8 +445,48 @@ public class ChatRoomPresenter extends BasePresenter implements ChatRoomView.Pre
     }
 
     @Override
-    public void reactionChat(Chat chat) {
-        // TODO: 06/07/2021  
+    public void reactionChat(Chat chat, String chatroom_id, String emojiId) {
+        GGFWRest.POST(Api.reaction_message(), new RequestInterface.OnPostRequest() {
+            @Override
+            public void onPreExecuted() {
+
+            }
+
+            @Override
+            public void onSuccess(JSONObject response) {
+
+                try {
+                    view.onSuccessReaction(response.getString("message")+" emoticon : "+response.getString("reaction"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(String error) {
+
+            }
+
+            @Override
+            public Map<String, String> requestParam() {
+                Map<String, String> params = new HashMap<>();
+                params.put("room_id", chatroom_id);
+                params.put("message_id", ""+chat.getMessage_id());
+                params.put("reaction", emojiId);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> requestHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + ChatoUtils.getUserLogin(getContext()).getAccess_token());
+                if(customer!=null){
+                    headers.put("customer_app_id", ""+customer.getCustomer_app_id());
+                    headers.put("customer_secret", ""+customer.getCustomer_secret());
+                }
+                return headers;
+            }
+        });
     }
 
     @Override

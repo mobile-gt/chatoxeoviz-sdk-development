@@ -89,6 +89,7 @@ android {
         addUrl("stringListRoomLabel", "apix/label/getListRoomLabel")
         addUrl("stringDeleteRoomLabel", "apix/label/addRoomLabel")
         addUrl("stringAddRoomLabel", "apix/label/deleteRoomLabel")
+        addUrl("stringReactionChat", "apix/chat/messageReaction")
     }
 
     configurations {

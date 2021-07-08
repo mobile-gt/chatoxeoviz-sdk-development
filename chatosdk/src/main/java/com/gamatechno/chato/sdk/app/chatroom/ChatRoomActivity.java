@@ -392,18 +392,17 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                 getResources().getString(R.string.emojiDialogTitle),
                 true,
                 true,
-                unicode -> Toast.makeText(ChatRoomActivity.this, "ini kode emoji : "+ unicode.getValue(), Toast.LENGTH_LONG).show());
+                unicode -> {
+                    Toast.makeText(ChatRoomActivity.this, "ini kode emoji : "+ unicode.getValue(), Toast.LENGTH_LONG).show();
+                    presenter.reactionChat(ChatroomHelper.getSelectedOneChat(chatList), chatRoomUiModel.getRoom_id(), unicode.getValue());
+                });
         dialogBuilder.build().show();
     }
 
     private List<Category> initializeEmojiCategoryList(){
         List<Category> list = new ArrayList<Category>();
 
-        List<ActivityCategoryUnicodes> value = new ArrayList<>(EnumSet.allOf(ActivityCategoryUnicodes.class));
-
-        //ActivitiesCategory activitiesCategory = new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), value);
-
-        list.add(new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), value));
+        list.add(new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), new ArrayList<>(EnumSet.allOf(ActivityCategoryUnicodes.class))));
         return list;
     }
 
@@ -1576,8 +1575,8 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     }
 
     @Override
-    public void onSuccessReaction() {
-        // TODO: 06/07/2021  
+    public void onSuccessReaction(String msg) {
+        Toast.makeText(ChatRoomActivity.this, "ini respon kode emoji : "+ msg, Toast.LENGTH_LONG).show();
     }
 
     @Override
