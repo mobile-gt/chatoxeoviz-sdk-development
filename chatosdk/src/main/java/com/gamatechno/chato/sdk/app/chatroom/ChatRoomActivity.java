@@ -66,6 +66,11 @@ import com.gamatechno.chato.sdk.data.model.ListentoRoomModel;
 import com.gamatechno.chato.sdk.data.model.PublishToRoom;
 import com.gamatechno.chato.sdk.data.constant.Preferences;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.EmojiCategoryTransformer;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.ActivitiesCategory;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.Category;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.view.EmojiPickerDialog;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.view.recyclerview.EmojiItemView;
 import com.gamatechno.chato.sdk.utils.ChatUtils.EndlessRecyclerViewScrollListener;
 import com.gamatechno.chato.sdk.utils.ChatUtils.SpeedyLinearLayoutManager;
 import com.gamatechno.chato.sdk.utils.DeleteMessageDialog;
@@ -82,13 +87,6 @@ import com.gamatechno.ggfw_ui.avatarview.AvatarPlaceholder;
 import com.gamatechno.ggfw_ui.avatarview.loader.PicassoLoader;
 import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.withplum.emojibottomsheetdialog.emoji.EmojiCategoryTransformer;
-import com.withplum.emojibottomsheetdialog.emoji.categories.ActivitiesCategory;
-import com.withplum.emojibottomsheetdialog.emoji.categories.Category;
-import com.withplum.emojibottomsheetdialog.emoji.categoryUnicodes.AnimalsNatureCategoryUnicodes;
-import com.withplum.emojibottomsheetdialog.view.EmojiClickListener;
-import com.withplum.emojibottomsheetdialog.view.EmojiPickerDialog;
-import com.withplum.emojibottomsheetdialog.view.recyclerview.EmojiItemView;
 
 
 import java.io.File;

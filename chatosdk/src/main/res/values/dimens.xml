@@ -32,4 +32,6 @@
     <dimen name="chat_attachment_image_holder">250dp</dimen>
 
     <dimen name="flexible_space_image_height">220dp</dimen>
+
+    <dimen name="emoji_size">20sp</dimen>
 </resources>

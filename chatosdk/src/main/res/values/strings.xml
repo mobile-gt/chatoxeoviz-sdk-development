@@ -41,6 +41,17 @@
     <string name="menu_title_attachment" translatable="false">Lampiran</string>
 
     <string name="chat_group_succes_add" translatable="false">Berhasil membuat grup baru</string>
+
+    <!--emoji bottom sheet dialog-->
+    <string name="emojiDialogTitle" translatable="false">Choose an emoji:</string>
+    <string name="activitiesCategoryTitle" translatable="false">Activity</string>
+    <string name="smileysAndPeopleTitle" translatable="false">Smileys and People</string>
+    <string name="foodAndDrinkTitle" translatable="false">Food and Drink</string>
+    <string name="animalsAndNatureTitle" translatable="false">Animals and Nature</string>
+    <string name="travelAndPlacesTitle" translatable="false">Travel and Places</string>
+    <string name="objectsTitle" translatable="false">Objects</string>
+    <string name="symbolsTitle" translatable="false">Symbols</string>
+    <string name="flagsTitle" translatable="false">Flags</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
