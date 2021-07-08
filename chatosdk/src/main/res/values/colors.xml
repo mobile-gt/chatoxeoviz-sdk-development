@@ -14,4 +14,6 @@
     <color name="colorBubbleActive">#DDEBF6</color>
     <color name="buttonTransparentWhite">#80FFFFFF</color>
     <color name="colorGreyMid">#464646</color>
+    <color name="greyLight">#6E8B99</color>
+    <color name="greyDark">#143647</color>
 </resources>

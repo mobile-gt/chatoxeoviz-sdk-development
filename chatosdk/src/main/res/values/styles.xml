@@ -250,6 +250,15 @@
 
     <!--Emoji Bottom Sheet-->
 
+    <style name="EmojiBottomSheet" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Dialog style -->
+        <item name="bottomSheetDialogTheme">@style/EmojiBottomSheetDialogTheme</item>
+    </style>
+
     <style name="EmojiBottomSheetDialogTheme">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
@@ -267,7 +276,7 @@
 
     <style name="EmojiBottomSheet.TextAppearance.Body1" parent="EmojiBottomSheet">
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/greyMid</item>
+        <item name="android:textColor">@color/colorGreyMid</item>
         <item name="android:textColorHint">@color/greyLight</item>
         <item name="android:textSize">@dimen/text_plain</item>
         <item name="android:textAllCaps">false</item>
