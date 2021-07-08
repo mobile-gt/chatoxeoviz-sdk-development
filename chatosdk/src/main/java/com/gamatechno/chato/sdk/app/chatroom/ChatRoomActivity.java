@@ -4,8 +4,6 @@ import android.Manifest;
 import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.app.NotificationManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,12 +16,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -35,23 +27,31 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.app.broadcastdirect.kontakbroadcast.ContactBroadcastActivity;
 import com.gamatechno.chato.sdk.app.chatinfo.DialogChatInfo;
 import com.gamatechno.chato.sdk.app.chatinfo.groupchatinfo.GroupChatInfoDialog;
+import com.gamatechno.chato.sdk.app.chatroom.adapter.ChatRoomAdapter;
+import com.gamatechno.chato.sdk.app.chatroom.helper.ChatRoomHelper;
 import com.gamatechno.chato.sdk.app.chatroom.menu.MenuAdapter;
 import com.gamatechno.chato.sdk.app.chatroom.menu.MenuModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatListModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.FileModel;
-import com.gamatechno.chato.sdk.app.chatroom.adapter.ChatRoomAdapter;
-import com.gamatechno.chato.sdk.app.chatroom.helper.ChatRoomHelper;
 import com.gamatechno.chato.sdk.app.chatroomdetail.UserRoomDetailActivity;
 import com.gamatechno.chato.sdk.app.chatrooms.uimodel.ChatRoomsUiModel;
 import com.gamatechno.chato.sdk.app.grouproomdetail.GroupInfoActivity;
 import com.gamatechno.chato.sdk.app.kontakchat.KontakChatDialog;
 import com.gamatechno.chato.sdk.app.kontakchat.KontakModel;
-
 import com.gamatechno.chato.sdk.app.photopreview.ImageViewActivity;
 import com.gamatechno.chato.sdk.app.pinnedgroupmessage.PinnedGroupMessageDialog;
 import com.gamatechno.chato.sdk.app.playvideo.PlayVideoActivity;
@@ -62,21 +62,22 @@ import com.gamatechno.chato.sdk.data.DAO.Chat.NotifChat;
 import com.gamatechno.chato.sdk.data.DAO.Chat.dbaccess.NotifChatDatabase;
 import com.gamatechno.chato.sdk.data.DAO.Group.Group;
 import com.gamatechno.chato.sdk.data.DAO.RoomChat.RoomChat;
-import com.gamatechno.chato.sdk.data.model.ListentoRoomModel;
-import com.gamatechno.chato.sdk.data.model.PublishToRoom;
 import com.gamatechno.chato.sdk.data.constant.Preferences;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
+import com.gamatechno.chato.sdk.data.model.ListentoRoomModel;
+import com.gamatechno.chato.sdk.data.model.PublishToRoom;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.EmojiCategoryTransformer;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.ActivitiesCategory;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.Category;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.ActivityCategoryUnicodes;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.view.EmojiPickerDialog;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.view.recyclerview.EmojiItemView;
 import com.gamatechno.chato.sdk.utils.ChatUtils.EndlessRecyclerViewScrollListener;
 import com.gamatechno.chato.sdk.utils.ChatUtils.SpeedyLinearLayoutManager;
+import com.gamatechno.chato.sdk.utils.ChatoUtils;
 import com.gamatechno.chato.sdk.utils.DeleteMessageDialog;
 import com.gamatechno.chato.sdk.utils.FilePath.FilePath;
 import com.gamatechno.chato.sdk.utils.FilePath.IOUtils;
-import com.gamatechno.chato.sdk.utils.ChatoUtils;
 import com.gamatechno.ggfw.Activity.Interfaces.PermissionResultInterface;
 import com.gamatechno.ggfw.easyphotopicker.Constants;
 import com.gamatechno.ggfw.easyphotopicker.DefaultCallback;
@@ -85,9 +86,7 @@ import com.gamatechno.ggfw.utils.AlertDialogBuilder;
 import com.gamatechno.ggfw.utils.GGFWUtil;
 import com.gamatechno.ggfw_ui.avatarview.AvatarPlaceholder;
 import com.gamatechno.ggfw_ui.avatarview.loader.PicassoLoader;
-import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
-
 
 import java.io.File;
 import java.io.IOException;
@@ -95,8 +94,6 @@ import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
@@ -383,9 +380,11 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     private List<Category> initializeEmojiCategoryList(){
         List<Category> list = new ArrayList<Category>();
 
-        ActivitiesCategory activitiesCategory = new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), null);
+        List<ActivityCategoryUnicodes> value = new ArrayList<ActivityCategoryUnicodes>(EnumSet.allOf(ActivityCategoryUnicodes.class));
 
-        list.add(new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), null));
+        //ActivitiesCategory activitiesCategory = new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), value);
+
+        list.add(new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), value));
         return list;
     }
 
