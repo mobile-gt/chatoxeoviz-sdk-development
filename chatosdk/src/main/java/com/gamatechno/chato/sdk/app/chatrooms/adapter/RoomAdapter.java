@@ -48,8 +48,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     }
 
     public void addData(boolean isRefresh, List<ChatRoomsUiModel> list){
-        if(isRefresh)
+        if(isRefresh) {
             chatList.clear();
+            chatListSort.clear();
+        }
 
         Collections.sort(list, (lhs, rhs) ->
                 rhs.getRoomChat().getRoom_type().compareTo(lhs.getRoomChat().getRoom_type()));
@@ -70,7 +72,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
             notifyDataSetChanged();
         } else if (type == 3) {
             chatListSort.clear();
-            chatListSort = chatList;
+            chatListSort.addAll(chatList);
             notifyDataSetChanged();
         }
     }
