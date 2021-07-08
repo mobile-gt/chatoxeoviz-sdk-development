@@ -66,7 +66,9 @@ import com.gamatechno.chato.sdk.data.constant.Preferences;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
 import com.gamatechno.chato.sdk.data.model.ListentoRoomModel;
 import com.gamatechno.chato.sdk.data.model.PublishToRoom;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.EmojInitListener;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.EmojiCategoryTransformer;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.EmojiCompatUtils;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.ActivitiesCategory;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.Category;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.ActivityCategoryUnicodes;
@@ -272,6 +274,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         setupRecyclerView();
         registerReceiver();
         setupViewModel();
+        initializeEmojis();
 
         chatNotifDatabase = new NotifChatDatabase(getContext());
 
@@ -337,8 +340,6 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         edt_message.setOnClickListener(this);
         lay_menu.setOnClickListener(this);
 
-        initializeEmojiCategoriesPreferred();
-
         if(chatRoomUiModel.getType().equals(RoomChat.official_room_type)){
             lay_detail_room.setClickable(false);
         } else {
@@ -362,6 +363,24 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         }
     }
 
+    private void initializeEmojis(){
+        EmojiCompatUtils.INSTANCE.initialize(getApplicationContext(), new EmojInitListener() {
+            @Override
+            public void onEmojisInitialized() {
+                emojisInitializedActions();
+            }
+
+            @Override
+            public void onEmojisInitializedError() {
+
+            }
+        });
+    }
+
+    private void emojisInitializedActions(){
+        initializeEmojiCategoriesPreferred();
+    }
+
     private void initializeEmojiCategoriesPreferred(){
         emojiItemViewList = new EmojiCategoryTransformer().transform(initializeEmojiCategoryList());
     }
@@ -380,7 +399,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     private List<Category> initializeEmojiCategoryList(){
         List<Category> list = new ArrayList<Category>();
 
-        List<ActivityCategoryUnicodes> value = new ArrayList<ActivityCategoryUnicodes>(EnumSet.allOf(ActivityCategoryUnicodes.class));
+        List<ActivityCategoryUnicodes> value = new ArrayList<>(EnumSet.allOf(ActivityCategoryUnicodes.class));
 
         //ActivitiesCategory activitiesCategory = new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), value);
 
