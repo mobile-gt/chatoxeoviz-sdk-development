@@ -24,12 +24,13 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
-   <!-- <TextView
+    <TextView
+        android:id="@+id/filterReset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_16dp"
-        android:text="Filter A -> Z"
+        android:text="Reset"
         android:textColor="@color/black"
         android:textSize="16sp" />
--->
+
 </LinearLayout>

@@ -408,6 +408,7 @@ public class ChatoActivity extends ChatoPermissionActivity implements ChatView.V
 
         TextView filterAZ = filterDialog.findViewById(R.id.filterAZ);
         TextView filterZA = filterDialog.findViewById(R.id.filterZA);
+        TextView filterReset = filterDialog.findViewById(R.id.filterReset);
 
         filterAZ.setOnClickListener(v -> {
             viewModel.isClicked(1);
@@ -416,6 +417,11 @@ public class ChatoActivity extends ChatoPermissionActivity implements ChatView.V
 
         filterZA.setOnClickListener(v -> {
             viewModel.isClicked(2);
+            filterDialog.dismiss();
+        });
+
+        filterReset.setOnClickListener(v -> {
+            viewModel.isClicked(3);
             filterDialog.dismiss();
         });
 
