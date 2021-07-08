@@ -19,6 +19,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     Context context;
     List<ChatRoomsUiModel> chatList;
+    List<ChatRoomsUiModel> chatListSort;
     OnObrolanAdapter onObrolanAdapter;
 
     boolean isLoading = false;
@@ -26,12 +27,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     public RoomAdapter(Context context, List<ChatRoomsUiModel> chatList, OnObrolanAdapter onObrolanAdapter) {
         this.context = context;
         this.chatList = chatList;
+        chatListSort = this.chatList;
         this.onObrolanAdapter = onObrolanAdapter;
     }
 
     public RoomAdapter(Context context, OnObrolanAdapter onObrolanAdapter) {
         this.context = context;
         this.chatList = new ArrayList();
+        chatListSort = this.chatList;
         this.onObrolanAdapter = onObrolanAdapter;
     }
 
@@ -41,7 +44,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     }
 
     public List<ChatRoomsUiModel> getData(){
-        return chatList;
+        return chatListSort;
     }
 
     public void addData(boolean isRefresh, List<ChatRoomsUiModel> list){
@@ -52,17 +55,22 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 rhs.getRoomChat().getRoom_type().compareTo(lhs.getRoomChat().getRoom_type()));
 
         chatList.addAll(list);
+        chatListSort = chatList;
         notifyDataSetChanged();
     }
 
     public void filterChat(int type) {
         if (type == 1) {
-            Collections.sort(chatList, (lhs, rhs) ->
+            Collections.sort(chatListSort, (lhs, rhs) ->
                     lhs.getRoomChat().getRoom_name().compareTo(rhs.getRoomChat().getRoom_name()));
             notifyDataSetChanged();
         } else if (type == 2) {
-            Collections.sort(chatList, (lhs, rhs) ->
+            Collections.sort(chatListSort, (lhs, rhs) ->
                     rhs.getRoomChat().getRoom_name().compareTo(lhs.getRoomChat().getRoom_name()));
+            notifyDataSetChanged();
+        } else if (type == 3) {
+            chatListSort.clear();
+            chatListSort = chatList;
             notifyDataSetChanged();
         }
     }
@@ -80,7 +88,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         if(isLoading){
             ((ChatroomViewHolder)viewHolder).bindLoading();
         } else {
-            ChatRoomsUiModel model = chatList.get(i);
+            ChatRoomsUiModel model = chatListSort.get(i);
             ((ChatroomViewHolder)viewHolder).bindDatas(model);
 
             viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -105,7 +113,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         if(isLoading){
             return 4;
         } else {
-            return chatList.size();
+            return chatListSort.size();
         }
 
     }
