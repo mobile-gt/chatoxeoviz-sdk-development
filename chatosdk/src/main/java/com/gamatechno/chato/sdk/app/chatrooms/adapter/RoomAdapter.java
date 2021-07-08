@@ -3,12 +3,15 @@ package com.gamatechno.chato.sdk.app.chatrooms.adapter;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.app.chatrooms.uimodel.ChatRoomsUiModel;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,7 +60,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 rhs.getRoomChat().getRoom_type().compareTo(lhs.getRoomChat().getRoom_type()));
 
         chatList.addAll(list);
-        chatListSort = chatList;
+        chatListSort.addAll(chatList);
         notifyDataSetChanged();
     }
 
@@ -71,6 +74,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                     rhs.getRoomChat().getRoom_name().compareTo(lhs.getRoomChat().getRoom_name()));
             notifyDataSetChanged();
         } else if (type == 3) {
+            Log.d("KENALOG", "data dari chatList" + new Gson().toJson(chatList));
             chatListSort.clear();
             chatListSort.addAll(chatList);
             notifyDataSetChanged();
