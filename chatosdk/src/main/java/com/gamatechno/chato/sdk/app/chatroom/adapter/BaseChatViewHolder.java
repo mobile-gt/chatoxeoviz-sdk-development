@@ -4,9 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.view.Gravity;
@@ -17,13 +14,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat;
 import com.gamatechno.chato.sdk.data.DAO.RoomChat.RoomChat;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
 import com.gamatechno.chato.sdk.utils.ChatoText.ExpandableTextView;
-import com.gamatechno.chato.sdk.utils.DetectHtml;
 import com.gamatechno.chato.sdk.utils.ChatoUtils;
+import com.gamatechno.chato.sdk.utils.DetectHtml;
 import com.gamatechno.chato.sdk.utils.animation.AnimationToggle;
 import com.gamatechno.ggfw.utils.StringUtils;
 
@@ -81,6 +82,8 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
 
     TextView tv_unread;
 
+    TextView tv_reactions;
+
     Context context;
 
     public BaseChatViewHolder(@NonNull Context context, @NonNull View itemView) {
@@ -114,6 +117,15 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
+
+        if (chat.getReactionList().size()>0){
+            tv_reactions.setVisibility(View.VISIBLE);
+            String buffer="";
+            for (int x=0; x < chat.getReactionList().size(); x++){
+                buffer += chat.getReactionList().get(x).getAsString()+ "\n";
+            }
+            tv_reactions.setText(buffer);
+        }
 
         LinearLayout.LayoutParams p_time = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 //        p_time.weight = 1.0f;
@@ -439,6 +451,7 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
         lay_text = view.findViewById(R.id.lay_text);
         lay_not_read_yet = view.findViewById(R.id.lay_not_read_yet);
         tv_unread = view.findViewById(R.id.tv_unread);
+        tv_reactions = view.findViewById(R.id.tv_reactions);
     }
 
 }

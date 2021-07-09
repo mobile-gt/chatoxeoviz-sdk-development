@@ -2,6 +2,7 @@ package com.gamatechno.chato.sdk.data.DAO.Chat;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -10,6 +11,7 @@ import androidx.room.PrimaryKey;
 import com.gamatechno.chato.sdk.app.chatroom.model.FileModel;
 import com.gamatechno.chato.sdk.app.kontakchat.KontakModel;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -64,6 +66,9 @@ public class Chat implements Serializable {
     int message_attachment_duration = 0;
 
     @Ignore
+    List<JsonObject> reactionList;
+
+    @Ignore
     List<KontakModel> room;
 
 
@@ -106,6 +111,14 @@ public class Chat implements Serializable {
 
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    public List<JsonObject> getReactionList() {
+        return reactionList;
+    }
+
+    public void setDuration(List<JsonObject> reactionList) {
+        this.reactionList = reactionList;
     }
 
     public String getMessage() {
