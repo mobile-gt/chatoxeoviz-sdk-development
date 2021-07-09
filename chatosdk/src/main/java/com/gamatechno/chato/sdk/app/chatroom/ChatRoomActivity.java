@@ -394,7 +394,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                 true,
                 unicode -> {
                     Toast.makeText(ChatRoomActivity.this, "ini kode emoji : "+ unicode.getName(), Toast.LENGTH_LONG).show();
-                    presenter.reactionChat(ChatroomHelper.getSelectedOneChat(chatList), chatRoomUiModel.getRoom_id(), unicode.getName());
+                    presenter.reactionChat(ChatroomHelper.getSelectedOneChat(chatList), chatRoomUiModel.getRoom_id(), "KODE"+ unicode.getValue());
                 });
         dialogBuilder.build().show();
     }
