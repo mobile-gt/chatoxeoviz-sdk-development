@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.text.TextUtils;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,11 +119,14 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
+        Log.d("from view holder", "ini awal reaction");//+ chat.getReactionList().size());
+
         if (chat.getReactionList()!=null && chat.getReactionList().size()>0){
+            Log.d("from view holder", "ini besar reaction "+ chat.getReactionList().size());
             tv_reactions.setVisibility(View.VISIBLE);
             String buffer="";
             for (int x=0; x < chat.getReactionList().size(); x++){
-                buffer += chat.getReactionList().get(x).getAsString()+ "\n";
+                buffer += chat.getReactionList().get(x)+ "\n";
             }
             tv_reactions.setText(buffer);
         }
