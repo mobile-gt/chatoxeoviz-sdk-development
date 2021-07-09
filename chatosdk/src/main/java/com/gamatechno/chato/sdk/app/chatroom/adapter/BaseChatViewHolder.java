@@ -118,7 +118,7 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
-        if (chat.getReactionList().size()>0){
+        if (chat.getReactionList()!=null && chat.getReactionList().size()>0){
             tv_reactions.setVisibility(View.VISIBLE);
             String buffer="";
             for (int x=0; x < chat.getReactionList().size(); x++){
