@@ -202,7 +202,8 @@
                         android:layout_height="match_parent"
                         android:text="reactions"
                         android:visibility="gone"
-                        android:padding="@dimen/padding_item_small"/>
+                        android:paddingLeft="@dimen/padding_item_small"
+                        android:paddingRight="@dimen/padding_item_small"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lay_status"
