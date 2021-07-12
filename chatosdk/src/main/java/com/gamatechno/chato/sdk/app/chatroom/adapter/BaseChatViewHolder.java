@@ -119,7 +119,6 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
-        Log.e("from view holder", "ini awal reaction" + chat.getReactionList().size());
         Log.e("from view holder", "ini awal reaction" + chat.getReactionList().isEmpty());//+ chat.getReactionList().size());
 
         if (chat.getReactionList()!=null && chat.getReactionList().size()>0){
