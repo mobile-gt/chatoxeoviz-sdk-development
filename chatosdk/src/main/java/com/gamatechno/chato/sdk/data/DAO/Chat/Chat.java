@@ -65,7 +65,7 @@ public class Chat implements Serializable {
     int message_attachment_duration = 0;
 
     @Ignore
-    List<String> reactionList;
+    List<String> message_reaction;
 
     @Ignore
     List<KontakModel> room;
@@ -113,11 +113,11 @@ public class Chat implements Serializable {
     }
 
     public List<String> getReactionList() {
-        return reactionList;
+        return message_reaction;
     }
 
     public void setDuration(List<String> reactionList) {
-        this.reactionList = reactionList;
+        this.message_reaction = reactionList;
     }
 
     public String getMessage() {
