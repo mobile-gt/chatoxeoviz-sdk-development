@@ -108,11 +108,11 @@ android {
             }
             makeAConstant("app_name", "Chato SDK")
             makeAConstant("application_name", "Chato")
-            makeAConstant("base_api", "https://api.chato.id:3017/")
-            makeAConstant("base_socket", "https://api.chato.id:3018/")
+            /*makeAConstant("base_api", "https://api.chato.id:3017/")
+            makeAConstant("base_socket", "https://api.chato.id:3018/")*/
             // For prod
-           /* makeAConstant("base_api", "https://api.chato.id:3030/")
-            makeAConstant("base_socket", "https://api.chato.id:3031/")*/
+            makeAConstant("base_api", "https://api.chato.id:3030/")
+            makeAConstant("base_socket", "https://api.chato.id:3031/")
         }
         debug {
             def makeAConstant = { constantName, constantValue ->
@@ -121,11 +121,11 @@ android {
             }
             makeAConstant("app_name", "Chato SDK")
             makeAConstant("application_name", "Chato")
-            makeAConstant("base_api", "https://api.chato.id:3017/")
-            makeAConstant("base_socket", "https://api.chato.id:3018/")
+            /*makeAConstant("base_api", "https://api.chato.id:3017/")
+            makeAConstant("base_socket", "https://api.chato.id:3018/")*/
             // For prod
-            /*makeAConstant("base_api", "https://api.chato.id:3030/")
-            makeAConstant("base_socket", "https://api.chato.id:3031")*/
+            makeAConstant("base_api", "https://api.chato.id:3030/")
+            makeAConstant("base_socket", "https://api.chato.id:3031")
         }
     }
 
