@@ -110,6 +110,13 @@ android {
             makeAConstant("application_name", "Chato")
             makeAConstant("base_api", "https://api.chato.id:3017/")
             makeAConstant("base_socket", "https://api.chato.id:3018/")
+            makeAConstant("cust_secret", "chato-46A423073543CDA4AF73091DD37F8B1D")
+            makeAConstant("cust_app_id", "AIZ-FEEEA8A22C8BFB300AD10BD810164E22")
+            // For prod
+            /*makeAConstant("base_api", "https://api.chato.id:3030/")
+            makeAConstant("base_socket", "https://api.chato.id:3031/")
+            makeAConstant("cust_secret", "chato-46A423073543CDA4AF73091DD37F8B5R")
+            makeAConstant("cust_app_id", "AIZ-FEEEA8A22C8BFB300AD10BD81016444")*/
         }
         debug {
             def makeAConstant = { constantName, constantValue ->
@@ -120,6 +127,13 @@ android {
             makeAConstant("application_name", "Chato")
             makeAConstant("base_api", "https://api.chato.id:3017/")
             makeAConstant("base_socket", "https://api.chato.id:3018/")
+            makeAConstant("cust_secret", "chato-46A423073543CDA4AF73091DD37F8B1D")
+            makeAConstant("cust_app_id", "AIZ-FEEEA8A22C8BFB300AD10BD810164E22")
+            // For prod
+            /*makeAConstant("base_api", "https://api.chato.id:3030/")
+            makeAConstant("base_socket", "https://api.chato.id:3031")
+            makeAConstant("cust_secret", "chato-46A423073543CDA4AF73091DD37F8B5R")
+            makeAConstant("cust_app_id", "AIZ-FEEEA8A22C8BFB300AD10BD81016444")*/
         }
     }
 
