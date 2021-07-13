@@ -70,8 +70,22 @@ import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.EmojInitLi
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.EmojiCategoryTransformer;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.EmojiCompatUtils;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.ActivitiesCategory;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.AnimalsNatureCategory;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.Category;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.FlagsCategory;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.FoodDrinkCategory;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.ObjectsCategory;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.SmileysPeopleCategory;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.SymbolsCategory;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categories.TravelPlacesCategory;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.ActivityCategoryUnicodes;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.AnimalsNatureCategoryUnicodes;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.FlagsCategoryUnicodes;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.FoodDrinkCategoryUnicodes;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.ObjectsCategoryUnicodes;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.SmileysPeopleCategoryUnicodes;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.SymbolsCategoryUnicodes;
+import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.emoji.categoryUnicodes.TravelPlacesCategoryUnicodes;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.view.EmojiPickerDialog;
 import com.gamatechno.chato.sdk.module.dialogs.EmojiBottomSheet.view.recyclerview.EmojiItemView;
 import com.gamatechno.chato.sdk.utils.ChatUtils.EndlessRecyclerViewScrollListener;
@@ -403,6 +417,13 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         List<Category> list = new ArrayList<Category>();
 
         list.add(new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), new ArrayList<>(EnumSet.allOf(ActivityCategoryUnicodes.class))));
+        list.add(new AnimalsNatureCategory(getResources().getString(R.string.animalsAndNatureTitle), new ArrayList<>(EnumSet.allOf(AnimalsNatureCategoryUnicodes.class))));
+        list.add(new FlagsCategory(getResources().getString(R.string.flagsTitle), new ArrayList<>(EnumSet.allOf(FlagsCategoryUnicodes.class))));
+        list.add(new FoodDrinkCategory(getResources().getString(R.string.foodAndDrinkTitle), new ArrayList<>(EnumSet.allOf(FoodDrinkCategoryUnicodes.class))));
+        list.add(new ObjectsCategory(getResources().getString(R.string.objectsTitle), new ArrayList<>(EnumSet.allOf(ObjectsCategoryUnicodes.class))));
+        list.add(new SmileysPeopleCategory(getResources().getString(R.string.smileysAndPeopleTitle), new ArrayList<>(EnumSet.allOf(SmileysPeopleCategoryUnicodes.class))));
+        list.add(new SymbolsCategory(getResources().getString(R.string.symbolsTitle), new ArrayList<>(EnumSet.allOf(SymbolsCategoryUnicodes.class))));
+        list.add(new TravelPlacesCategory(getResources().getString(R.string.travelAndPlacesTitle), new ArrayList<>(EnumSet.allOf(TravelPlacesCategoryUnicodes.class))));
         return list;
     }
 
