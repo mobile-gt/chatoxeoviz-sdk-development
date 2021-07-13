@@ -8,6 +8,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.FileModel;
 import com.gamatechno.chato.sdk.app.kontakchat.KontakModel;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
@@ -65,7 +66,7 @@ public class Chat implements Serializable {
     int message_attachment_duration = 0;
 
     @Ignore
-    List<String> message_reaction;
+    List<ChatReactionModel> message_reaction;
 
     @Ignore
     List<KontakModel> room;
@@ -112,11 +113,11 @@ public class Chat implements Serializable {
         this.duration = duration;
     }
 
-    public List<String> getReactionList() {
+    public List<ChatReactionModel> getReactionList() {
         return message_reaction;
     }
 
-    public void setDuration(List<String> reactionList) {
+    public void setDuration(List<ChatReactionModel> reactionList) {
         this.message_reaction = reactionList;
     }
 
