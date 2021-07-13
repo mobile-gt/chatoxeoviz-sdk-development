@@ -7,6 +7,7 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
+import com.gamatechno.chato.sdk.BuildConfig
 import com.gamatechno.chato.sdk.R
 import com.gamatechno.chato.sdk.app.login.LoginPresenter
 import com.gamatechno.chato.sdk.app.login.LoginView
@@ -84,7 +85,7 @@ open class ChatoBaseApplication : Application() {
     }
 
     fun setChatoToken(token : String, authInteractor: AuthInteractor){
-        ChatoSDKMapper.setCustomer(this, "chato-46A423073543CDA4AF73091DD37F8B1D", "AIZ-FEEEA8A22C8BFB300AD10BD810164E22")
+        ChatoSDKMapper.setCustomer(this, BuildConfig.cust_secret, BuildConfig.cust_app_id)
         LoginPresenter(this, object : LoginView.View{
             override fun onErrorConnection(message: String?) {
 
