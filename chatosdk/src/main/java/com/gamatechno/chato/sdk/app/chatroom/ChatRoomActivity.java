@@ -500,6 +500,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                         presenter.copyChat(ChatroomHelper.getSelectedChatList(chatList));
                         sterilizeChat();
                          */
+                        initializeEmojis();
                         showEmojiDialog();
                         break;
                     case StringConstant.appbar_copy:
