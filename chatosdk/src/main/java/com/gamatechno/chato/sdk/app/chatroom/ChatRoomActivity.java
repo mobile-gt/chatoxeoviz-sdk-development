@@ -392,7 +392,6 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
     private void emojisInitializedActions(){
         initializeEmojiCategoriesPreferred();
-        showEmojiDialog();
     }
 
     private void initializeEmojiCategoriesPreferred(){
