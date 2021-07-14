@@ -159,6 +159,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
     ChatRoomUiModel chatRoomUiModel;
     List<Chat> chatList = new ArrayList<>();
     List<Chat> chatList_temp = new ArrayList<>();
+    List<EmojiItemView> emojiItemViewList= new ArrayList<>();
 
     boolean isFinishNeedtoIn = false;
     Group grouproom;
@@ -461,7 +462,6 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
         }
     }
 
-    List<EmojiItemView> emojiItemViewList;
     protected void initializeEmojis(){
         EmojiCompatUtils.INSTANCE.initialize(getApplicationContext(), new EmojInitListener() {
             @Override
