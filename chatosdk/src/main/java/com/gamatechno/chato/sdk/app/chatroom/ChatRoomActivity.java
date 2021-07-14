@@ -286,6 +286,8 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         setupRecyclerView();
         registerReceiver();
         setupViewModel();
+        initializeEmojis();
+        emojiItemViewList = new EmojiCategoryTransformer().transform(initializeEmojiCategoryList());
 
         chatNotifDatabase = new NotifChatDatabase(getContext());
 
@@ -500,8 +502,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                         sterilizeChat();
                          */
                         //initializeEmojis();
-                        emojisInitializedActions();
-                        //showEmojiDialog();
+                        showEmojiDialog();
                         break;
                     case StringConstant.appbar_copy:
                         presenter.copyChat(ChatroomHelper.getSelectedChatList(chatList));
