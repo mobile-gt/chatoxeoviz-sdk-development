@@ -4,14 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -23,24 +15,32 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.chato.chato_emoticon.Actions.EmojIconActions;
+import com.chato.chato_emoticon.Helper.EmojiconsPopup;
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat;
 import com.gamatechno.chato.sdk.data.DAO.Group.Group;
 import com.gamatechno.chato.sdk.data.DAO.RoomChat.RoomChat;
+import com.gamatechno.chato.sdk.data.constant.StringConstant;
 import com.gamatechno.chato.sdk.data.model.ListentoRoomModel;
 import com.gamatechno.chato.sdk.data.model.PublishToRoom;
-import com.gamatechno.chato.sdk.data.constant.StringConstant;
 import com.gamatechno.chato.sdk.module.activity.ChatoPermissionActivity;
-import com.gamatechno.chato.sdk.module.core.ChatoBaseApplicationOld;
-import com.gamatechno.chato.sdk.utils.DetectHtml;
-import com.gamatechno.chato.sdk.utils.Loading;
+import com.gamatechno.chato.sdk.module.core.ChatoBaseApplication;
 import com.gamatechno.chato.sdk.utils.ChatoEditText.ChatEditText;
 import com.gamatechno.chato.sdk.utils.ChatoUtils;
+import com.gamatechno.chato.sdk.utils.DetectHtml;
+import com.gamatechno.chato.sdk.utils.Loading;
 import com.gamatechno.chato.sdk.utils.animation.AnimationToggle;
 import com.gamatechno.ggfw_ui.avatarview.AvatarPlaceholder;
 import com.gamatechno.ggfw_ui.avatarview.loader.PicassoLoader;
 import com.gamatechno.ggfw_ui.avatarview.views.AvatarView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -50,8 +50,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.chato.chato_emoticon.Actions.EmojIconActions;
-import com.chato.chato_emoticon.Helper.EmojiconsPopup;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -388,6 +386,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
             appbar_action.hide(img_star);
             appbar_action.hide(img_info);
             appbar_action.hide(img_pinmessage);
+            appbar_action.hide(img_reaction);
         } else {
             appbar_action.hide(img_forward);
             if(!isMine){

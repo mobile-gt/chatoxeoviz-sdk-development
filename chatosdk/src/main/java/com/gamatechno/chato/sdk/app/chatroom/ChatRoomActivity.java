@@ -142,7 +142,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     Bitmap thumb_file_attachment = null;
     String duration_file_attachment = "";
     IntentFilter filter;
-    private List<EmojiItemView> emojiItemViewList;
+    List<EmojiItemView> emojiItemViewList;
 
     KontakChatDialog kontakChatDialog;
 
@@ -400,6 +400,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     }
 
     private void showEmojiDialog(){
+        Log.d("emojiItemViewList Size", " = "+emojiItemViewList.size());
         EmojiPickerDialog.Builder dialogBuilder = new EmojiPickerDialog.Builder(
                 this,
                 emojiItemViewList,
