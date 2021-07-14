@@ -25,7 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -1600,7 +1599,8 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
     @Override
     public void onSuccessReaction(String msg) {
-        Toast.makeText(ChatRoomActivity.this, "ini respon kode emoji : "+ msg, Toast.LENGTH_LONG).show();
+        Log.d("respon emoji reaction"," : "+msg);
+        sterilizeChat();
     }
 
     @Override

@@ -456,7 +456,7 @@ public class ChatRoomPresenter extends BasePresenter implements ChatRoomView.Pre
             public void onSuccess(JSONObject response) {
 
                 try {
-                    view.onSuccessReaction(response.getString("message")+" emoticon : "+response.getString("reaction"));
+                    view.onSuccessReaction(response.getString("message")+" emoticon : "+response.getString("reaction_data"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
