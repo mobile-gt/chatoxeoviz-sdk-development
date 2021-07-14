@@ -407,7 +407,6 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                 true,
                 true,
                 unicode -> {
-                    Toast.makeText(ChatRoomActivity.this, "ini kode emoji : "+ unicode.getValue(), Toast.LENGTH_LONG).show();
                     presenter.reactionChat(ChatroomHelper.getSelectedOneChat(chatList), chatRoomUiModel.getRoom_id(), unicode.getValue());
                 });
         dialogBuilder.build().show();
@@ -416,14 +415,14 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     private List<Category> initializeEmojiCategoryList(){
         List<Category> list = new ArrayList<Category>();
 
+        list.add(new SmileysPeopleCategory(getResources().getString(R.string.smileysAndPeopleTitle), new ArrayList<>(EnumSet.allOf(SmileysPeopleCategoryUnicodes.class))));
         list.add(new ActivitiesCategory(getResources().getString(R.string.activitiesCategoryTitle), new ArrayList<>(EnumSet.allOf(ActivityCategoryUnicodes.class))));
         list.add(new AnimalsNatureCategory(getResources().getString(R.string.animalsAndNatureTitle), new ArrayList<>(EnumSet.allOf(AnimalsNatureCategoryUnicodes.class))));
-        list.add(new FlagsCategory(getResources().getString(R.string.flagsTitle), new ArrayList<>(EnumSet.allOf(FlagsCategoryUnicodes.class))));
         list.add(new FoodDrinkCategory(getResources().getString(R.string.foodAndDrinkTitle), new ArrayList<>(EnumSet.allOf(FoodDrinkCategoryUnicodes.class))));
         list.add(new ObjectsCategory(getResources().getString(R.string.objectsTitle), new ArrayList<>(EnumSet.allOf(ObjectsCategoryUnicodes.class))));
-        list.add(new SmileysPeopleCategory(getResources().getString(R.string.smileysAndPeopleTitle), new ArrayList<>(EnumSet.allOf(SmileysPeopleCategoryUnicodes.class))));
         list.add(new SymbolsCategory(getResources().getString(R.string.symbolsTitle), new ArrayList<>(EnumSet.allOf(SymbolsCategoryUnicodes.class))));
         list.add(new TravelPlacesCategory(getResources().getString(R.string.travelAndPlacesTitle), new ArrayList<>(EnumSet.allOf(TravelPlacesCategoryUnicodes.class))));
+        list.add(new FlagsCategory(getResources().getString(R.string.flagsTitle), new ArrayList<>(EnumSet.allOf(FlagsCategoryUnicodes.class))));
         return list;
     }
 
@@ -1496,6 +1495,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     @Override
     protected void onResume() {
         super.onResume();
+        initializeEmojis();
         registerReceiver(receiver, filter);
         GGFWUtil.setStringToSP(getContext(), Preferences.CHATROOM_STATE, StringConstant.chatroom_state_open);
 

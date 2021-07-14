@@ -127,7 +127,11 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
             String buffer="";
             for (int x=0; x < chat.getReactionList().size(); x++){
                 buffer += chat.getReactionList().get(x).getEmoji()+ " | "+
-                        chat.getReactionList().get(x).getName() +"\n";
+                        chat.getReactionList().get(x).getName();
+
+                if (x<= chat.getReactionList().size()-1){
+                    buffer += "\n";
+                }
             }
             tv_reactions.setText(buffer);
         }
