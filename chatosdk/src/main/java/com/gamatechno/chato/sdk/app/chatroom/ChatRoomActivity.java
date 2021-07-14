@@ -287,7 +287,10 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         registerReceiver();
         setupViewModel();
         initializeEmojis();
-        emojiItemViewList = new EmojiCategoryTransformer().transform(initializeEmojiCategoryList());
+        if(emojiItemViewList==null) {
+            EmojiCategoryTransformer transformer = new EmojiCategoryTransformer();
+            emojiItemViewList = transformer.transform(initializeEmojiCategoryList());
+        }
 
         chatNotifDatabase = new NotifChatDatabase(getContext());
 
