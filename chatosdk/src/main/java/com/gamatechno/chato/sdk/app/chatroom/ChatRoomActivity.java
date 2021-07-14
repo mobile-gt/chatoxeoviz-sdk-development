@@ -288,7 +288,6 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         setupRecyclerView();
         registerReceiver();
         setupViewModel();
-        initializeEmojis();
 
         chatNotifDatabase = new NotifChatDatabase(getContext());
 
@@ -1497,7 +1496,6 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     @Override
     protected void onResume() {
         super.onResume();
-        initializeEmojis();
         registerReceiver(receiver, filter);
         GGFWUtil.setStringToSP(getContext(), Preferences.CHATROOM_STATE, StringConstant.chatroom_state_open);
 
