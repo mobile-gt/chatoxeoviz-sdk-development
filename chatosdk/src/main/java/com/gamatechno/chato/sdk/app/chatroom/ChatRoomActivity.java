@@ -1632,7 +1632,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                     chat.add(newModel);
                     chatList.get(x).setReactionList(chat);
 
-                    adapter.notifyItemChanged(x);
+                    adapter.notifyDataSetChanged();
                 }
             }
         }
