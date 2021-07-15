@@ -7,11 +7,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.core.content.ContextCompat;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -21,6 +16,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.app.chatroom.ChatRoomActivity;
@@ -33,6 +33,7 @@ import com.gamatechno.chato.sdk.utils.Loading;
 import com.gamatechno.ggfw.utils.AlertDialogBuilder;
 import com.gamatechno.ggfw.utils.DialogBuilder;
 import com.gamatechno.ggfw.utils.GGFWUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -161,7 +162,7 @@ public class AddDetailGroupDialog extends DialogBuilder implements AddDetailGrou
                 if(isValidate()){
                     addDetailGroupUiModel.setTitle(edt_name.getText().toString());
                     addDetailGroupUiModel.setDeskripsi("");
-                    addDetailGroupUiModel.setGroup_type(switch_broadcast.isChecked() == true ? "BROADCAST" : "OPEN");
+                    addDetailGroupUiModel.setGroup_type(switch_broadcast.isChecked() ? "BROADCAST" : "OPEN");
 
                     if((""+addDetailGroupUiModel.getUri()).equals("null")){
                         presenter.requestAddGroup(addDetailGroupUiModel, "");
