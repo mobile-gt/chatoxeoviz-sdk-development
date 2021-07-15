@@ -123,7 +123,9 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
 
         if (chat.getReactionList()!=null && chat.getReactionList().size()>0){
             Log.e("from view holder", "ini besar reaction "+ chat.getReactionList().size());
-            tv_reactions.setVisibility(View.VISIBLE);
+            if (tv_reactions!=null) {
+                tv_reactions.setVisibility(View.VISIBLE);
+            }
             String buffer="";
             for (int x=0; x < chat.getReactionList().size(); x++){
                 buffer += chat.getReactionList().get(x).getEmoji()+ " | "+
