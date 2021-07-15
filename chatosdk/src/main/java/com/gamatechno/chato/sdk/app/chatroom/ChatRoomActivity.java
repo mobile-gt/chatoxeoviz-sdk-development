@@ -46,6 +46,7 @@ import com.gamatechno.chato.sdk.app.chatroom.menu.MenuModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatListModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionNotifModel;
+import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionResponse;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.FileModel;
 import com.gamatechno.chato.sdk.app.chatroomdetail.UserRoomDetailActivity;
@@ -248,17 +249,20 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             } else if (action.equals(StringConstant.broadcast_receive_chat_reaction)){
                 Log.d("ChatRoomActivity","getUpdateRoom: received broadcast reaction success");
                 ChatReactionNotifModel data = (ChatReactionNotifModel) intent.getSerializableExtra("data");
-                Log.d("ChatRoomActivity","data: "+data.getReaction_data());
-                for (int x=0; x<chatList.size(); x++){
-                    if (chatList.get(x).getChatId()== Integer.parseInt(data.getMessage_id())){
-                        List<ChatReactionModel> chat = chatList.get(x).getReactionList();
+                Log.d("ChatRoomActivity", "data: " + data.getReaction_data());
 
-                        ChatReactionModel newModel = new Gson().fromJson(data.getReaction(), ChatReactionModel.class);
+                if (ChatoUtils.getUserLogin(getContext()).getUser_id() != Integer.parseInt(data.getUser_id())) {
+                    for (int x = 0; x < chatList.size(); x++) {
+                        if (chatList.get(x).getChatId() == Integer.parseInt(data.getMessage_id())) {
+                            List<ChatReactionModel> chat = chatList.get(x).getReactionList();
 
-                        chat.add(newModel);
-                        chatList.get(x).setReactionList(chat);
+                            ChatReactionModel newModel = new Gson().fromJson(data.getReaction(), ChatReactionModel.class);
 
-                        adapter.notifyItemChanged(x);
+                            chat.add(newModel);
+                            chatList.get(x).setReactionList(chat);
+
+                            adapter.notifyItemChanged(x);
+                        }
                     }
                 }
             }
@@ -1617,8 +1621,22 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     }
 
     @Override
-    public void onSuccessReaction(String msg) {
-        Log.d("respon emoji reaction"," : "+msg);
+    public void onSuccessReaction(ChatReactionResponse response) {
+        if (ChatoUtils.getUserLogin(getContext()).getUser_id() == Integer.parseInt(response.getUser_id())) {
+            for (int x = 0; x < chatList.size(); x++) {
+                if (chatList.get(x).getChatId() == Integer.parseInt(response.getMessage_id())) {
+                    List<ChatReactionModel> chat = chatList.get(x).getReactionList();
+
+                    ChatReactionModel newModel = new Gson().fromJson(response.getReaction(), ChatReactionModel.class);
+
+                    chat.add(newModel);
+                    chatList.get(x).setReactionList(chat);
+
+                    adapter.notifyItemChanged(x);
+                }
+            }
+        }
+
         sterilizeChat();
     }
 

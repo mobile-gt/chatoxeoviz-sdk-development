@@ -1,5 +1,6 @@
 package com.gamatechno.chato.sdk.app.chatroom;
 
+import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionResponse;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
 import com.gamatechno.chato.sdk.app.kontakchat.KontakModel;
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat;
@@ -46,7 +47,7 @@ public interface ChatRoomView {
 
         void onSearchChat(List<Chat> chats);
 
-        void onSuccessReaction(String msg);
+        void onSuccessReaction(ChatReactionResponse response);
         void openFile(String uri);
         void onGetMessageInfo(Chat chat, String time_delivered, String time_read);
         void onGetGroupMessageInfo(Chat chat, List<KontakModel> terkirim, List<KontakModel> terbaca);

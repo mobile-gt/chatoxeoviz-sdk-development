@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.gamatechno.chato.sdk.R;
+import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionResponse;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
 import com.gamatechno.chato.sdk.app.kontakchat.KontakModel;
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat;
@@ -456,8 +457,13 @@ public class ChatRoomPresenter extends BasePresenter implements ChatRoomView.Pre
             public void onSuccess(JSONObject response) {
 
                 try {
-                    JSONObject result = response.getJSONObject("result");
-                    view.onSuccessReaction(response.getString("message")+" emoticon : "+result.getString("reaction_data"));
+                    if (response.getBoolean("success")) {
+                        JSONObject result = response.getJSONObject("result");
+                        ChatReactionResponse responseModel = gson.fromJson(result.toString(), ChatReactionResponse.class);
+                        Log.d("respon emoji reaction", " : " + response.getString("message")
+                                + " emoticon : " + responseModel.getReaction_data());
+                        view.onSuccessReaction(responseModel);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
