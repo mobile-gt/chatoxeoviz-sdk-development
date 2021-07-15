@@ -69,16 +69,22 @@ public class ChatoFirebaseService extends FirebaseMessagingService {
     public void onMessageReceived(String s){
         try {
             JSONObject jsonObject = new JSONObject(s);
-            RoomChat roomChat = gson.fromJson(jsonObject.getJSONObject("data").toString(), RoomChat.class);
+
+            if (s.contains("reaction_data")){
+                reactNotif = gson.fromJson(jsonObject.getJSONObject("data").toString(), ChatReactionNotifModel.class);
+                showNewReaction(reactNotif);
+            }else{
+                RoomChat roomChat = gson.fromJson(jsonObject.getJSONObject("data").toString(), RoomChat.class);
 //        Chat chat = gson.fromJson(remoteMessage.getData().get("data"), Chat.class);
 
-            if(roomChat.getDetail_last_message().getFrom_user_id() != ChatoUtils.getUserLogin(context).getUser_id()){
-                if(presenter == null){
-                    presenter = new FirebaseServicePresenter(context);
-                }
+                if(roomChat.getDetail_last_message().getFrom_user_id() != ChatoUtils.getUserLogin(context).getUser_id()){
+                    if(presenter == null){
+                        presenter = new FirebaseServicePresenter(context);
+                    }
 
-                chatoNotification = new ChatoNotification(context, imageNotif);
-                showPushNotification(roomChat);
+                    chatoNotification = new ChatoNotification(context, imageNotif);
+                    showPushNotification(roomChat);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
