@@ -248,6 +248,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             } else if (action.equals(StringConstant.broadcast_receive_chat_reaction)){
                 Log.d("ChatRoomActivity","getUpdateRoom: received broadcast reaction success");
                 ChatReactionNotifModel data = (ChatReactionNotifModel) intent.getSerializableExtra("data");
+                Log.d("ChatRoomActivity","data: "+data.getReaction_data());
                 for (int x=0; x<chatList.size(); x++){
                     if (chatList.get(x).getChatId()== Integer.parseInt(data.getMessage_id())){
                         List<ChatReactionModel> chat = chatList.get(x).getReactionList();
