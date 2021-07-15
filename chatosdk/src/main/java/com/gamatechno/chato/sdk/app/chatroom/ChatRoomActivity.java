@@ -1622,6 +1622,9 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
     @Override
     public void onSuccessReaction(ChatReactionResponse response) {
+        Log.d("check id user", "login user = "+ChatoUtils.getUserLogin(getContext()).getUser_id()
+                + ", react user ="+ response.getUser_id());
+
         if (ChatoUtils.getUserLogin(getContext()).getUser_id() == Integer.parseInt(response.getUser_id())) {
             for (int x = 0; x < chatList.size(); x++) {
                 if (chatList.get(x).getChatId() == Integer.parseInt(response.getMessage_id())) {
