@@ -1627,7 +1627,11 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
         if (ChatoUtils.getUserLogin(getContext()).getUser_id() == Integer.parseInt(response.getUser_id())) {
             for (int x = 0; x < chatList.size(); x++) {
+                Log.d("check id chat", "item id = "+chatList.get(x).getChatId()
+                        + ", react message ="+ response.getMessage_id());
+
                 if (chatList.get(x).getChatId() == Integer.parseInt(response.getMessage_id())) {
+                    Log.d("check size reaction", " "+chatList.get(x).getReactionList().size());
                     List<ChatReactionModel> chat = chatList.get(x).getReactionList();
 
                     ChatReactionModel newModel = new Gson().fromJson(response.getReaction(), ChatReactionModel.class);
@@ -1636,6 +1640,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                     chatList.get(x).setReactionList(chat);
 
                     adapter.notifyDataSetChanged();
+                    Log.d("check size reaction", " "+chatList.get(x).getReactionList().size());
                 }
             }
         }

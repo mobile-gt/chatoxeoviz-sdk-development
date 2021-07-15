@@ -460,8 +460,8 @@ public class ChatRoomPresenter extends BasePresenter implements ChatRoomView.Pre
                     if (response.getBoolean("success")) {
                         JSONObject result = response.getJSONObject("result");
                         ChatReactionResponse responseModel = gson.fromJson(result.toString(), ChatReactionResponse.class);
-                        Log.d("respon emoji reaction", " : " + response.getString("message")
-                                + " emoticon : " + responseModel.getReaction_data());
+                        Log.d("respon emoji reaction", response.getString("message")
+                                + ", emoticon = " + responseModel.getReaction_data());
                         view.onSuccessReaction(responseModel);
                     }
                 } catch (JSONException e) {
