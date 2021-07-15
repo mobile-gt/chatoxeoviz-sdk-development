@@ -121,11 +121,9 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
 
         Log.e("from view holder", "ini awal reaction");//+ chat.getReactionList().size());
 
-        if (chat.getReactionList()!=null && chat.getReactionList().size()>0){
+        if (tv_reactions!=null && chat.getReactionList()!=null && chat.getReactionList().size()>0) {
             Log.e("from view holder", "ini besar reaction "+ chat.getReactionList().size());
-            if (tv_reactions!=null) {
-                tv_reactions.setVisibility(View.VISIBLE);
-            }
+            tv_reactions.setVisibility(View.VISIBLE);
             String buffer="";
             for (int x=0; x < chat.getReactionList().size(); x++){
                 buffer += chat.getReactionList().get(x).getEmoji()+ " | "+
@@ -136,6 +134,7 @@ public class BaseChatViewHolder extends RecyclerView.ViewHolder{
                 }
             }
             tv_reactions.setText(buffer);
+
         }
 
         LinearLayout.LayoutParams p_time = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

@@ -86,10 +86,10 @@
                     <ImageView
                         android:id="@+id/img_terusan"
                         android:scaleX="1"
-                        android:tint="@color/grey_500"
                         android:src="@drawable/ic_forward"
                         android:layout_width="@dimen/dimen_12dp"
-                        android:layout_height="@dimen/dimen_12dp" />
+                        android:layout_height="@dimen/dimen_12dp"
+                        app:tint="@color/grey_500" />
                     <TextView
                         android:id="@+id/tv_terusan"
                         style="@style/Text.Caption.Italic"
@@ -134,7 +134,8 @@
                             android:scaleType="fitXY"
                             android:background="@drawable/quote_vertical_blue_bar"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent">
 
                         </LinearLayout>
                         <RelativeLayout
@@ -214,11 +215,11 @@
                             app:contentPadding="@dimen/dimen_12dp">
                             <ImageView
                                 android:layout_gravity="center"
-                                android:tint="@color/grey_200"
                                 android:src="@drawable/ic_camera_video"
                                 android:id="@+id/image_download"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                app:tint="@color/grey_200" />
                         </androidx.cardview.widget.CardView>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
@@ -234,6 +235,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="@dimen/dimen_140dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_reactions"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="reactions"
+                        android:visibility="gone"
+                        android:paddingLeft="@dimen/padding_item_small"
+                        android:paddingRight="@dimen/padding_item_small"/>
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lay_status"
                     android:layout_gravity="right"

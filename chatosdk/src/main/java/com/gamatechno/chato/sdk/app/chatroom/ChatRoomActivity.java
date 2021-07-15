@@ -615,6 +615,29 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         });
     }
 
+    private void checkChatType(String typeChat){
+        switch (typeChat){
+            case Chat.chat_type_message:
+
+                break;
+            case Chat.chat_type_label:
+                appbar_action.hide(img_reaction);
+                break;
+            case Chat.chat_type_image:
+
+                break;
+            case Chat.chat_type_file:
+                appbar_action.hide(img_reaction);
+                break;
+            case Chat.chat_type_audio:
+                appbar_action.hide(img_reaction);
+                break;
+            case Chat.chat_type_video:
+                appbar_action.hide(img_reaction);
+                break;
+        }
+    }
+
     private void setupRecyclerView(){
         layoutManager = new SpeedyLinearLayoutManager(this, SpeedyLinearLayoutManager.VERTICAL, false);
         layoutManager.setStackFromEnd(true);
@@ -627,6 +650,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             public void onLongPress(View view, int position) {
                 chatList.get(position).setClicked(true);
                 adapter.notifyDataSetChanged();
+                checkChatType(chatList.get(position).getMessage_type());
                 presenter.checkSelectedChat(chatList);
             }
 

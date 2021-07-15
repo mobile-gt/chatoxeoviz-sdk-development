@@ -85,11 +85,11 @@
                     android:orientation="horizontal">
                     <ImageView
                         android:id="@+id/img_terusan"
-                        android:tint="@color/grey_500"
                         android:scaleX="1"
                         android:src="@drawable/ic_forward"
                         android:layout_width="@dimen/dimen_12dp"
-                        android:layout_height="@dimen/dimen_12dp" />
+                        android:layout_height="@dimen/dimen_12dp"
+                        app:tint="@color/grey_500" />
                     <TextView
                         android:id="@+id/tv_terusan"
                         style="@style/Text.Standard.Italic"
@@ -133,7 +133,8 @@
                             android:scaleType="fitXY"
                             android:background="@drawable/quote_vertical_blue_bar"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent">
 
                         </LinearLayout>
                         <RelativeLayout
@@ -214,6 +215,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="@dimen/dimen_140dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_reactions"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="reactions"
+                        android:visibility="gone"
+                        android:paddingLeft="@dimen/padding_item_small"
+                        android:paddingRight="@dimen/padding_item_small"/>
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lay_status"
                     android:layout_gravity="right"

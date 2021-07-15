@@ -66,6 +66,7 @@ public class ChatoFirebaseService extends FirebaseMessagingService {
         }
     }
 
+    // NOTE : ini dipakai di project eoviz tolong jangan dihapus
     public void onMessageReceived(String s){
         try {
             JSONObject jsonObject = new JSONObject(s);
