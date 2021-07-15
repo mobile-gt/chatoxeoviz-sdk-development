@@ -4,11 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionNotifModel;
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat;
 import com.gamatechno.chato.sdk.data.DAO.RoomChat.RoomChat;
-import com.gamatechno.chato.sdk.data.model.PublishToRoom;
 import com.gamatechno.chato.sdk.data.constant.Preferences;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
+import com.gamatechno.chato.sdk.data.model.PublishToRoom;
 import com.gamatechno.chato.sdk.utils.ChatoNotification.ChatoNotification;
 import com.gamatechno.chato.sdk.utils.ChatoUtils;
 import com.gamatechno.ggfw.utils.GGFWUtil;
@@ -32,6 +33,8 @@ public class ChatoFirebaseService extends FirebaseMessagingService {
 
     Context context;
     int imageNotif;
+    ChatReactionNotifModel reactNotif;
+    RoomChat roomChat;
 
     public ChatoFirebaseService(Context context, int imageNotif) {
         this.context = context;
@@ -45,14 +48,22 @@ public class ChatoFirebaseService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(TAG, "onMessageReceived: "+remoteMessage.getData().get("data"));
-        RoomChat roomChat = gson.fromJson(remoteMessage.getData().get("data"), RoomChat.class);
+        String reactionData = remoteMessage.getData().get("reaction_data");
+
 //        Chat chat = gson.fromJson(remoteMessage.getData().get("data"), Chat.class);
         if(presenter == null){
             presenter = new FirebaseServicePresenter(getApplicationContext());
         }
 
         chatoNotification = new ChatoNotification(getApplicationContext());
-        showPushNotification(roomChat);
+
+        if (reactionData!=null){
+            reactNotif = gson.fromJson(remoteMessage.getData().get("data"), ChatReactionNotifModel.class);
+            showNewReaction(reactNotif);
+        }else {
+            roomChat = gson.fromJson(remoteMessage.getData().get("data"), RoomChat.class);
+            showPushNotification(roomChat);
+        }
     }
 
     public void onMessageReceived(String s){
@@ -72,6 +83,10 @@ public class ChatoFirebaseService extends FirebaseMessagingService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showNewReaction(ChatReactionNotifModel data){
+        context.sendBroadcast(new Intent(StringConstant.broadcast_receive_chat_reaction).putExtra("data", data));
     }
 
 

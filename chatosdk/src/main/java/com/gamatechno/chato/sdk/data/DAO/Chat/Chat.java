@@ -117,7 +117,7 @@ public class Chat implements Serializable {
         return message_reaction;
     }
 
-    public void setDuration(List<ChatReactionModel> reactionList) {
+    public void setReactionList(List<ChatReactionModel> reactionList) {
         this.message_reaction = reactionList;
     }
 

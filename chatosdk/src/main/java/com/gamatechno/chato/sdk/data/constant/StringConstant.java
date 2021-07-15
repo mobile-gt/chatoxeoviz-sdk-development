@@ -31,6 +31,7 @@ public class StringConstant {
     final public static String broadcast_receive_status_chat      = package_name+"_broadcast_receive_status_chat";
     final public static String broadcast_receive_chat      = package_name+"_broadcast_receive_chat";
     final public static String broadcast_refresh_chat      = package_name+"_broadcast_refresh_chat";
+    final public static String broadcast_receive_chat_reaction      = package_name+"_receive_chat_reaction";
 
     // Flag untuk meminta status service aktif atau nonaktif
     public static final String service_status_on = package_name+"_service_status_on";

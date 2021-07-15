@@ -44,6 +44,8 @@ import com.gamatechno.chato.sdk.app.chatroom.helper.ChatRoomHelper;
 import com.gamatechno.chato.sdk.app.chatroom.menu.MenuAdapter;
 import com.gamatechno.chato.sdk.app.chatroom.menu.MenuModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatListModel;
+import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionModel;
+import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionNotifModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.FileModel;
 import com.gamatechno.chato.sdk.app.chatroomdetail.UserRoomDetailActivity;
@@ -100,6 +102,7 @@ import com.gamatechno.ggfw.utils.AlertDialogBuilder;
 import com.gamatechno.ggfw.utils.GGFWUtil;
 import com.gamatechno.ggfw_ui.avatarview.AvatarPlaceholder;
 import com.gamatechno.ggfw_ui.avatarview.loader.PicassoLoader;
+import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
@@ -242,6 +245,21 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                 if(presenter!=null){
                     presenter.getUpdatedGroupInfo(chatRoomUiModel);
                 }
+            } else if (action.equals(StringConstant.broadcast_receive_chat_reaction)){
+                Log.d("ChatRoomActivity","getUpdateRoom: received broadcast reaction success");
+                ChatReactionNotifModel data = (ChatReactionNotifModel) intent.getSerializableExtra("data");
+                for (int x=0; x<chatList.size(); x++){
+                    if (chatList.get(x).getChatId()== Integer.parseInt(data.getMessage_id())){
+                        List<ChatReactionModel> chat = chatList.get(x).getReactionList();
+
+                        ChatReactionModel newModel = new Gson().fromJson(data.getReaction(), ChatReactionModel.class);
+
+                        chat.add(newModel);
+                        chatList.get(x).setReactionList(chat);
+
+                        adapter.notifyItemChanged(x);
+                    }
+                }
             }
         }
     };
@@ -286,10 +304,6 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         registerReceiver();
         setupViewModel();
         initializeEmojis();
-        if(emojiItemViewList==null || emojiItemViewList.size()==0) {
-            EmojiCategoryTransformer transformer = new EmojiCategoryTransformer();
-            emojiItemViewList = transformer.transform(initializeEmojiCategoryList());
-        }
 
         chatNotifDatabase = new NotifChatDatabase(getContext());
 
@@ -503,6 +517,10 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                         sterilizeChat();
                          */
                         //initializeEmojis();
+                        if(emojiItemViewList==null || emojiItemViewList.size()==0) {
+                            EmojiCategoryTransformer transformer = new EmojiCategoryTransformer();
+                            emojiItemViewList = transformer.transform(initializeEmojiCategoryList());
+                        }
                         showEmojiDialog();
                         break;
                     case StringConstant.appbar_copy:
@@ -1724,6 +1742,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         filter.addAction(StringConstant.broadcast_receive_chat);
         filter.addAction(StringConstant.broadcast_receive_status_chat);
         filter.addAction(StringConstant.broadcast_get_update_group_info);
+        filter.addAction(StringConstant.broadcast_receive_chat_reaction);
         filter.addAction(broadcast_listen_to_room);
     }
 
