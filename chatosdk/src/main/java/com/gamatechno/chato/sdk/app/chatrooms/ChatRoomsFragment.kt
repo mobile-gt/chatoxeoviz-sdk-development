@@ -35,7 +35,7 @@ class ChatRoomsFragment : Fragment(), ChatRoomsView.View {
     var isGroup = false
     var roomAdapter: RoomAdapter? = null
     var obrolanPresenter: ChatRoomsPresenter? = null
-    var viewModel: ChatRoomsViewModel? = null
+    var viewModel: ChatRoomsViewModel? = ChatRoomsViewModel()
     var model: MainViewModel? = null
     var isLoadMore = true
     var filter: IntentFilter? = null
