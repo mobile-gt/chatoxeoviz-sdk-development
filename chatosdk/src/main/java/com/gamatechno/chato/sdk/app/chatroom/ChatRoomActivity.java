@@ -254,7 +254,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
                 if (ChatoUtils.getUserLogin(getContext()).getUser_id() != Integer.parseInt(data.getUser_id())) {
                     for (int x = 0; x < chatList.size(); x++) {
-                        if (chatList.get(x).getChatId() == Integer.parseInt(data.getMessage_id())) {
+                        if (chatList.get(x).getMessage_id() == Integer.parseInt(data.getMessage_id())) {
                             List<ChatReactionModel> chat = chatList.get(x).getReactionList();
 
                             ChatReactionModel newModel = new Gson().fromJson(data.getReaction(), ChatReactionModel.class);
@@ -262,7 +262,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                             chat.add(newModel);
                             chatList.get(x).setReactionList(chat);
 
-                            adapter.notifyItemChanged(x);
+                            adapter.notifyDataSetChanged();
                         }
                     }
                 }
