@@ -144,6 +144,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
     Bitmap thumb_file_attachment = null;
     String duration_file_attachment = "";
     IntentFilter filter;
+    String lastSelectedChatType = "";
 
     KontakChatDialog kontakChatDialog;
 
@@ -650,7 +651,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
             public void onLongPress(View view, int position) {
                 chatList.get(position).setClicked(true);
                 adapter.notifyDataSetChanged();
-                checkChatType(chatList.get(position).getMessage_type());
+                lastSelectedChatType = chatList.get(position).getMessage_type();
                 presenter.checkSelectedChat(chatList);
             }
 
@@ -1396,6 +1397,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                 appbar_action.show();
                 isAppBarShow = true;
                 toolbar.setVisibility(View.GONE);
+                checkChatType(lastSelectedChatType);
                 appbar_action.hide(lay_searchbar);
 
                 tv_action_title.setText(""+ChatroomHelper.totalSelected(chatList));
