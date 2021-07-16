@@ -255,7 +255,11 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
                 if (ChatoUtils.getUserLogin(getContext()).getUser_id() != Integer.parseInt(data.getUser_id())) {
                     for (int x = 0; x < chatList.size(); x++) {
                         if (chatList.get(x).getMessage_id() == Integer.parseInt(data.getMessage_id())) {
-                            List<ChatReactionModel> chat = chatList.get(x).getReactionList();
+                            List<ChatReactionModel> chat = new ArrayList<>();
+                            if (chatList.get(x).getReactionList()!=null) {
+                                Log.d("check size reaction", " " + chatList.get(x).getReactionList().size());
+                                chat = chatList.get(x).getReactionList();
+                            }
 
                             ChatReactionModel newModel = new Gson().fromJson(data.getReaction(), ChatReactionModel.class);
 
