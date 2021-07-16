@@ -30,7 +30,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -48,7 +48,6 @@ import com.gamatechno.chato.sdk.app.kontakchat.KontakModel;
 import com.gamatechno.chato.sdk.app.main.searchlist.AdapterSearchList;
 import com.gamatechno.chato.sdk.app.main.searchlist.SearchChatroomModel;
 import com.gamatechno.chato.sdk.data.constant.StringConstant;
-import com.gamatechno.chato.sdk.module.activity.ChatoPermissionActivity;
 import com.gamatechno.chato.sdk.module.dialogs.DialogImagePicker.DialogImagePicker;
 import com.gamatechno.chato.sdk.utils.ChatoUtils;
 import com.gamatechno.chato.sdk.utils.animation.AnimationToggle;
@@ -179,7 +178,7 @@ public class ChatoFragment extends FragmentPermission implements ChatView.View, 
         presenter = new ChatPresenter(getContext(), this);
         wrapper_top.setInOutAnimation(R.anim.pull_in_bottom, R.anim.push_out_top);
         toggle_fab.setInOutAnimation(R.anim.pull_in_top, R.anim.push_out_bottom);
-        chatRoomsViewModel = ViewModelProviders.of(this).get(ChatRoomsViewModel.class);
+        chatRoomsViewModel = new ViewModelProvider(this).get(ChatRoomsViewModel.class);
 //        toggle_fab.setInOutAnimation(R.anim.pull_in_top, R.anim.slide_out_bottom);
 
         chatRoomsViewModel.initBackPressed().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
