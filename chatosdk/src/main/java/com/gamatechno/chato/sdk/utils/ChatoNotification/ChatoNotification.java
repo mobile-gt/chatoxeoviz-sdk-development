@@ -8,23 +8,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.os.Build;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.RemoteInput;
 import androidx.core.content.ContextCompat;
-import android.util.Log;
 
 import com.gamatechno.chato.sdk.BuildConfig;
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.app.chatroom.ChatRoomActivity;
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat;
 import com.gamatechno.chato.sdk.data.DAO.Chat.NotifChat;
-import com.gamatechno.chato.sdk.data.DAO.RoomChat.RoomChat;
-import com.gamatechno.chato.sdk.data.model.UserModel;
-import com.gamatechno.chato.sdk.data.constant.StringConstant;
 import com.gamatechno.chato.sdk.data.DAO.Chat.dbaccess.NotifChatDatabase;
+import com.gamatechno.chato.sdk.data.DAO.RoomChat.RoomChat;
+import com.gamatechno.chato.sdk.data.constant.StringConstant;
+import com.gamatechno.chato.sdk.data.model.UserModel;
 import com.gamatechno.chato.sdk.module.service.ChatoService;
-import com.gamatechno.chato.sdk.utils.DetectHtml;
 import com.gamatechno.chato.sdk.utils.ChatoUtils;
+import com.gamatechno.chato.sdk.utils.DetectHtml;
 import com.gamatechno.ggfw.utils.GGFWUtil;
 
 public class ChatoNotification {
@@ -187,7 +188,7 @@ public class ChatoNotification {
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.ic_logo)
+                .setSmallIcon(R.drawable.ic_app_space)
                 .setTicker(BuildConfig.application_name)
                 //     .setPriority(Notification.PRIORITY_MAX)
                 .setContentTitle(roomChat.getRoom_name())
