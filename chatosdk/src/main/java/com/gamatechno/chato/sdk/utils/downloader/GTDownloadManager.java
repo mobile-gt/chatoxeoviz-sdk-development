@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -140,14 +141,14 @@ public class GTDownloadManager {
         createNotificationChannel();
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(mContext,CHANNEL_ID)
-                        .setSmallIcon(R.drawable.ic_logo)
+                        .setSmallIcon(R.drawable.ic_app_space)
                         .setContentTitle(request.getFileName())
                         .setContentText(status)
                         .setGroup(GROUP_GTDOWNLOADER);
 
         Notification summaryNotification =
                 new NotificationCompat.Builder(mContext,CHANNEL_ID)
-                        .setSmallIcon(R.drawable.ic_logo)
+                        .setSmallIcon(R.drawable.ic_app_space)
                         .setGroup(GROUP_GTDOWNLOADER)
                         .setGroupSummary(true)
                         .build();
