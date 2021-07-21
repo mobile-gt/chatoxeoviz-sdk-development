@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:layout_height="match_parent"
-    tools:context=".app.usertoken.UserTokenActivity">
+    android:layout_height="match_parent">
+    <!--
+    tools:context=".app.usertoken.UserTokenActivity"
+    -->
     <ImageView
         android:layout_width="112dp"
-        android:layout_height="@dimen/dimen_42dp"
+        android:layout_height="@dimen/dimen_76dp"
         android:layout_gravity="left"
         android:layout_marginTop="@dimen/dimen_56dp"
         android:layout_marginStart="@dimen/dimen_16dp"
         android:layout_marginEnd="@dimen/dimen_16dp"
-        android:src="@drawable/chato_logo" />
+        android:src="@drawable/ic_logo_space" />
     <TextView
-        android:layout_marginTop="@dimen/dimen_56dp"
+        android:layout_marginTop="@dimen/dimen_48dp"
         android:text="Selamat Datang"
         android:textStyle="bold"
         android:textColor="@color/black"

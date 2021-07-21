@@ -142,7 +142,7 @@
                             android:visibility="gone"
                             android:layout_width="@dimen/dimen_128dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/chato_logo"/>
+                            android:src="@drawable/ic_logo_space"/>
                     </com.gamatechno.chato.sdk.utils.SmartOfficeToolbar>
                 </com.google.android.material.appbar.AppBarLayout>
                 <com.google.android.material.tabs.TabLayout

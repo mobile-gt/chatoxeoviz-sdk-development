@@ -142,7 +142,7 @@
                             android:visibility="gone"
                             android:layout_width="@dimen/dimen_128dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/chato_logo"/>
+                            android:src="@drawable/ic_logo_space"/>
                     </com.gamatechno.chato.sdk.utils.SmartOfficeToolbar>
                 </com.google.android.material.appbar.AppBarLayout>
                 <com.google.android.material.tabs.TabLayout
@@ -259,7 +259,7 @@
                 android:layout_height="wrap_content">
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab_add"
-                    android:src="@drawable/ic_add_new_message"
+                    android:src="@drawable/ic_add_yellow"
                     app:backgroundTint="@color/colorPrimary"
                     app:elevation="@dimen/dimen_2dp"
                     android:layout_marginBottom="@dimen/dimen_4dp"

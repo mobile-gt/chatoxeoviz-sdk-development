@@ -227,7 +227,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
                 img_replied_message.setVisibility(View.VISIBLE);
                 Picasso.get()
                         .load(chat.getMessage_attachment())
-                        .placeholder(R.drawable.chato_logo)
+                        .placeholder(R.drawable.ic_logo_space)
                         .into(img_replied_message);
                 break;
             case Chat.chat_type_file:
@@ -256,7 +256,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
                 img_replied_message.setVisibility(View.VISIBLE);
                 Picasso.get()
                         .load(chat.getMessage_attachment_thumbnail())
-                        .placeholder(R.drawable.chato_logo)
+                        .placeholder(R.drawable.ic_logo_space)
                         .into(img_replied_message);
         }
         ChatoUtils.showKeyboard(getContext(), edt_message);
