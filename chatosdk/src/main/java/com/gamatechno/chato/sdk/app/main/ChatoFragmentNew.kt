@@ -96,6 +96,7 @@ class ChatoFragmentNew : ChatRoomsFragmentNew(), ChatView.View, View.OnClickList
         wrapper_top.setInOutAnimation(R.anim.pull_in_bottom, R.anim.push_out_top)
         toggle_fab.setInOutAnimation(R.anim.pull_in_top, R.anim.push_out_bottom)
 
+        setHasOptionsMenu(true)
 //        toggle_fab.setInOutAnimation(R.anim.pull_in_top, R.anim.slide_out_bottom);
         viewModel!!.initBackPressed().observe(
             viewLifecycleOwner,
