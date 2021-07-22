@@ -17,12 +17,13 @@
                 android:id="@+id/lay_search"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
+                android:background="@color/colorAccent2"
                 android:layout_height="@dimen/dimen_56dp">
                 <ImageView
                     android:padding="@dimen/dimen_16dp"
                     android:id="@+id/img_back_search"
                     style="@style/clickable"
-                    android:src="@drawable/ic_arrow_left_primary"
+                    android:src="@drawable/ic_backward_arrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <RelativeLayout
@@ -40,6 +41,8 @@
                             android:textSize="14dp"
                             android:hint="Cari Obrolan disini"
                             android:maxLines="1"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
                             android:inputType="text"
                             android:imeOptions="actionSearch"
                             android:background="@android:color/transparent"
@@ -52,7 +55,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dimen_16dp"
-                            android:src="@drawable/ic_clear_black_24dp" />
+                            android:src="@drawable/ic_clear_white" />
                     </LinearLayout>
                     <RelativeLayout
                         android:layout_marginStart="@dimen/dimen_8dp"
@@ -70,7 +73,7 @@
                             android:textSize="@dimen/dimen_20dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:text="0"
                             android:maxLines="1"
                             android:ellipsize="end" />
@@ -83,14 +86,14 @@
                             android:layout_height="wrap_content">
                             <ImageView
                                 android:visibility="gone"
-                                app:tint="@color/colorPrimary"
+                                app:tint="@color/white"
                                 android:id="@+id/img_label"
                                 android:src="@drawable/ic_label"
                                 android:layout_width="@dimen/dimen_24dp"
                                 android:layout_height="@dimen/dimen_24dp" />
                             <ImageView
                                 android:layout_marginStart="@dimen/dimen_16dp"
-                                app:tint="@color/colorPrimary"
+                                app:tint="@color/white"
                                 android:id="@+id/img_pin"
                                 android:src="@drawable/ic_pin_chat"
                                 android:layout_width="@dimen/dimen_24dp"
@@ -99,7 +102,7 @@
                                 android:visibility="gone"
                                 android:layout_marginStart="@dimen/dimen_16dp"
                                 android:id="@+id/img_delete_chat"
-                                app:tint="@color/colorPrimary"
+                                app:tint="@color/white"
                                 android:src="@drawable/ic_delete_message"
                                 android:layout_width="@dimen/dimen_24dp"
                                 android:layout_height="@dimen/dimen_24dp" />
@@ -123,7 +126,7 @@
                         app:title=""
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:background="@color/white"
+                        android:background="@color/colorAccent2"
                         android:visibility="visible"
                         app:titleTextColor="@color/grey_700"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -136,6 +139,7 @@
                             android:layout_marginRight="18dp"
                             android:gravity="center"
                             android:textSize="18sp"
+                            android:textColor="@color/white"
                             android:fontFamily="@font/thefont"
                             android:text="Chat" />
                         <ImageView
