@@ -264,6 +264,7 @@
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab_add"
                     android:src="@drawable/ic_add_yellow"
+                    app:tint="#FFD200"
                     app:backgroundTint="@color/colorPrimary"
                     app:elevation="@dimen/dimen_2dp"
                     android:layout_marginBottom="@dimen/dimen_4dp"
