@@ -800,7 +800,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         rv.setAdapter(adapter);
 
         rv_mention.setItemAnimator(new DefaultItemAnimator());
-        rv_mention.setAdapter(adapter);
+        rv_mention.setAdapter(adapterMention);
         dummyMention();
         adapterMention.notifyDataSetChanged();
 
