@@ -33,6 +33,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gamatechno.chato.sdk.R;
@@ -651,7 +652,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         layoutManager.setStackFromEnd(true);
 
         rv.setLayoutManager(layoutManager);
-        rv_mention.setLayoutManager(layoutManager);
+        rv_mention.setLayoutManager(new LinearLayoutManager(getContext()));
         chatList = new ArrayList<>();
         chatList_temp = new ArrayList<>();
         mentionList = new ArrayList<>();
