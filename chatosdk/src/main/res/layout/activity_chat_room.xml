@@ -166,6 +166,22 @@
             </androidx.cardview.widget.CardView>
         </com.gamatechno.chato.sdk.utils.animation.AnimationToggle>
         <com.gamatechno.chato.sdk.utils.animation.AnimationToggle
+            android:id="@+id/lay_metion_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_200"
+            android:paddingTop="@dimen/dimen_8dp"
+            android:paddingLeft="@dimen/dimen_8dp"
+            android:paddingRight="@dimen/dimen_8dp"
+            android:layout_marginBottom="-4dp"
+            android:layout_above="@+id/lay_bottom_chat">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_mention"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_224dp"
+                tools:listitem="@layout/item_mention"/>
+        </com.gamatechno.chato.sdk.utils.animation.AnimationToggle>
+        <com.gamatechno.chato.sdk.utils.animation.AnimationToggle
             android:visibility="gone"
             android:id="@+id/lay_action_attachment"
             android:layout_marginBottom="-4dp"

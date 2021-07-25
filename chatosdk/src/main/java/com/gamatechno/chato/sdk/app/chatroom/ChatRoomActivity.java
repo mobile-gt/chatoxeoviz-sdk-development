@@ -40,6 +40,7 @@ import com.gamatechno.chato.sdk.app.broadcastdirect.kontakbroadcast.ContactBroad
 import com.gamatechno.chato.sdk.app.chatinfo.DialogChatInfo;
 import com.gamatechno.chato.sdk.app.chatinfo.groupchatinfo.GroupChatInfoDialog;
 import com.gamatechno.chato.sdk.app.chatroom.adapter.ChatRoomAdapter;
+import com.gamatechno.chato.sdk.app.chatroom.adapter.MentionAdapter;
 import com.gamatechno.chato.sdk.app.chatroom.helper.ChatRoomHelper;
 import com.gamatechno.chato.sdk.app.chatroom.menu.MenuAdapter;
 import com.gamatechno.chato.sdk.app.chatroom.menu.MenuModel;
@@ -49,6 +50,7 @@ import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionNotifModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatReactionResponse;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
 import com.gamatechno.chato.sdk.app.chatroom.model.FileModel;
+import com.gamatechno.chato.sdk.app.chatroom.model.MentionModel;
 import com.gamatechno.chato.sdk.app.chatroomdetail.UserRoomDetailActivity;
 import com.gamatechno.chato.sdk.app.chatrooms.uimodel.ChatRoomsUiModel;
 import com.gamatechno.chato.sdk.app.grouproomdetail.GroupInfoActivity;
@@ -132,6 +134,7 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 
     final String TAG = "ChatRoomActivity";
     ChatRoomAdapter adapter;
+    MentionAdapter adapterMention;
     ChatRoomPresenter presenter;
 
     Bitmap bitmap_image;
@@ -648,8 +651,19 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         layoutManager.setStackFromEnd(true);
 
         rv.setLayoutManager(layoutManager);
+        rv_mention.setLayoutManager(layoutManager);
         chatList = new ArrayList<>();
         chatList_temp = new ArrayList<>();
+        mentionList = new ArrayList<>();
+
+        adapterMention = new MentionAdapter(getContext(), mentionList, new MentionAdapter.MentionAdapterView() {
+            @Override
+            public void onClickItemMention(MentionModel item) {
+                Log.e("ChatRoom", "ini item data "+ item.getName());
+
+            }
+        });
+
         adapter = new ChatRoomAdapter(getContext(), chatList, new ChatRoomAdapter.OnChatRoomClick() {
             @Override
             public void onLongPress(View view, int position) {
@@ -784,6 +798,11 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
         rv.setItemAnimator(new DefaultItemAnimator());
         rv.setAdapter(adapter);
 
+        rv_mention.setItemAnimator(new DefaultItemAnimator());
+        rv_mention.setAdapter(adapter);
+        dummyMention();
+        adapterMention.notifyDataSetChanged();
+
         fab_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -877,6 +896,17 @@ public class ChatRoomActivity extends BaseChatRoomActivity implements ChatRoomVi
 //        }
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    //todo delete after endpoint ready
+    void dummyMention(){
+        MentionModel newModel = new MentionModel();
+        newModel.setPictureUrl("");
+        for (int x=1; x <4; x++){
+            newModel.setId(""+x);
+            newModel.setName("alif"+x);
+            mentionList.add(newModel);
+        }
     }
 
     @Override

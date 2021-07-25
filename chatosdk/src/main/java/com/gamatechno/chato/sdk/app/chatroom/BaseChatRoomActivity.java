@@ -24,6 +24,7 @@ import com.chato.chato_emoticon.Actions.EmojIconActions;
 import com.chato.chato_emoticon.Helper.EmojiconsPopup;
 import com.gamatechno.chato.sdk.R;
 import com.gamatechno.chato.sdk.app.chatroom.model.ChatRoomUiModel;
+import com.gamatechno.chato.sdk.app.chatroom.model.MentionModel;
 import com.gamatechno.chato.sdk.data.DAO.Chat.Chat;
 import com.gamatechno.chato.sdk.data.DAO.Group.Group;
 import com.gamatechno.chato.sdk.data.DAO.RoomChat.RoomChat;
@@ -94,11 +95,13 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
     ImageView img_attach;
     TextView tv_attachment;
     RecyclerView rv;
+    RecyclerView rv_mention;
     LinearLayout lay_detail_room;
     LinearLayout lay_menu_attach;
     LinearLayout lay_document;
     LinearLayout lay_gallery;
     LinearLayout lay_record_video;
+    AnimationToggle lay_metion_list;
     RelativeLayout lay_menu;
     RecyclerView menu_list;
     Toolbar toolbar;
@@ -138,6 +141,7 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
     ChatRoomUiModel chatRoomUiModel;
     List<Chat> chatList = new ArrayList<>();
     List<Chat> chatList_temp = new ArrayList<>();
+    List<MentionModel> mentionList = new ArrayList<>();
     List<EmojiItemView> emojiItemViewList= new ArrayList<>();
 
     boolean isFinishNeedtoIn = false;
@@ -321,6 +325,11 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
         } else {
             showSendMessage();
         }
+        if(input.contains("@")){
+            showMentionLayout();
+        } else {
+            hideMentionLayout();
+        }
     }
 
     protected void onTextChangeInput(Uri uri_attachment){
@@ -378,6 +387,14 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
 
     protected void showSendMessage(){
         lay_action.display(img_send);
+    }
+
+    protected void hideMentionLayout(){
+        lay_metion_list.hide();
+    }
+
+    protected void showMentionLayout(){
+        lay_metion_list.show();
     }
 
     protected void updateActionAppBar(boolean isMultiple, boolean isMine) {
@@ -492,8 +509,10 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
         img_attachment = findViewById(R.id.img_attachment);
         tv_attachment = findViewById(R.id.tv_attachment);
         rv = findViewById(R.id.rv);
+        rv_mention = findViewById(R.id.rv_mention);
         lay_detail_room = findViewById(R.id.lay_detail_room);
         lay_menu_attach = findViewById(R.id.lay_menu_attach);
+        lay_metion_list = findViewById(R.id.lay_metion_list);
         img_profile = findViewById(R.id.img_profile);
         img_back = findViewById(R.id.img_back);
         lay_back = findViewById(R.id.lay_back);
