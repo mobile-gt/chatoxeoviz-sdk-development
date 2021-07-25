@@ -323,12 +323,12 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
                 hideSendMessage();
             }
         } else {
+            if(!is_forward && input.endsWith("@")){
+                showMentionLayout();
+            } else {
+                hideMentionLayout();
+            }
             showSendMessage();
-        }
-        if(input.contains("@")){
-            showMentionLayout();
-        } else {
-            hideMentionLayout();
         }
     }
 

@@ -166,6 +166,7 @@
             </androidx.cardview.widget.CardView>
         </com.gamatechno.chato.sdk.utils.animation.AnimationToggle>
         <com.gamatechno.chato.sdk.utils.animation.AnimationToggle
+            android:visibility="gone"
             android:id="@+id/lay_metion_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
