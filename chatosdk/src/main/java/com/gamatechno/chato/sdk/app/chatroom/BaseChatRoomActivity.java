@@ -325,12 +325,25 @@ public class BaseChatRoomActivity extends ChatoPermissionActivity {
         } else {
             if(!is_forward && input.endsWith("@")){
                 showMentionLayout();
-            } else {
+            } else if (input.endsWith(" ")){
                 hideMentionLayout();
             }
             showSendMessage();
         }
     }
+
+    /* todo get text after @
+    private String getMentionNameFromText(String text){
+        String[] list = text.split(" ");
+        for (int x=0; x<list.length; x++){
+            if (list[x].contains("@")){
+
+            }
+        }
+        return
+    }
+
+     */
 
     protected void onTextChangeInput(Uri uri_attachment){
         Log.d(TAG, "onTextChangeInput: "+uri_attachment);
